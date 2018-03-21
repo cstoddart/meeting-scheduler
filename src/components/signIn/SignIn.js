@@ -1,19 +1,46 @@
 import React, { Component } from 'react';
-import { googleSignIn } from '../../auth';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import * as accessTokenActions from '../../actions/accesTokenActions';
+// import { googleSignIn } from '../../auth';
+const googleSignIn = () => undefined;
 
 class SignIn extends Component {
-  async signIn() {
+  handleSignIn = async () => {
     const { credential: { accessToken } } = await googleSignIn();
-    console.log('ACCESS TOKEN', accessToken);
+    this.props.accessTokenActions.setAccessToken(accessToken);
+    // this.props.history.push("/calendar");
   }
 
   render() {
     return (
       <div>
-        <a onClick={this.signIn}>Sign In</a>
+        <a onClick={this.handleSignIn}>Sign In</a>
       </div>
     )
   };
 }
 
-export default SignIn;
+SignIn.propTypes = {
+  stuffActions: PropTypes.object,
+  stuff: PropTypes.array
+};
+
+function mapStateToProps(state) {
+  return {
+    accessToken: state.accessToken
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    accessTokenActions: bindActionCreators(accessTokenActions, dispatch)
+  };
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignIn));
