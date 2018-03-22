@@ -36,6 +36,7 @@ var config = {
     "email",
     "profile",
     "https://www.googleapis.com/auth/calendar",
+    "https://www.googleapis.com/auth/calendar.readonly",
   ],
   discoveryDocs: [
     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
@@ -46,7 +47,7 @@ var config = {
 firebase.initializeApp(config);
 
 var uiConfig = {
-  signInSuccessUrl: "localhost:5000", // Assuming you are running on your local machine
+  signInSuccessUrl: "localhost:3000", // Assuming you are running on your local machine
   signInOptions: [
     {
       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -66,24 +67,33 @@ window.gapi.load('client:auth2', {
   callback: function() {
     // Handle gapi.client initialization.
     console.log('callback...');
-    window.gapi.client
-        .init({
-          apiKey: config.apiKey,
-          clientId: config.clientID,
-          discoveryDocs: config.discoveryDocs,
-          scope: config.scopes.join(" ")
-        })
-        // Loading is finished, so start the app
-        .then(function() {
-          // Make sure the Google API Client is properly signed in
-          // if (window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
-          //   startApp();
-          // } else {
-          //   console.log('signing out...');
-          //   firebase.auth().signOut(); // Something went wrong, sign out
-          // }
-          startApp();
-        });
+    // window.gapi.client
+    //   .init({
+    //     apiKey: config.apiKey,
+    //     // apiKey: "AIzaSyB3DyA_gJJn94MlsHdxoALORleuDNagzD0",
+    //     clientId: config.clientID,
+    //     discoveryDocs: config.discoveryDocs,
+    //     scope: config.scopes.join(" ")
+    //   })
+    //   // Loading is finished, so start the app
+    //   .then(function() {
+    //     // Make sure the Google API Client is properly signed in
+    //     // if (window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
+    //     //   startApp();
+    //     // } else {
+    //     //   console.log('signing out...');
+    //     //   firebase.auth().signOut(); // Something went wrong, sign out
+    //     // }
+    //     window.gapi.auth2.init({
+    //       client_id: "290258087421-l8cck249qan0k2nbealve3d4q3h1i52g.apps.googleusercontent.com"
+    //     })
+    //     startApp();
+    //   });
+    window.gapi.auth2.authorize({
+      client_id: '290258087421-l8cck249qan0k2nbealve3d4q3h1i52g.apps.googleusercontent.com',
+      scope: "email profile https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly",
+      response_type: 'id_token permission',
+    }, (user) => startApp(user));
   },
   onerror: function() {
     // Handle loading error.
@@ -134,16 +144,26 @@ function startApp(user) {
 
   // Make sure to refresh the Auth Token in case it expires!
   firebase.auth().currentUser.getToken()
-  .then(function(){
-   return window.gapi.client.calendar.events
-    .list({
-      calendarId: "primary",
-      timeMin: new Date().toISOString(),
-      showDeleted: false,
-      singleEvents: true,
-      maxResults: 10,
-      orderBy: "startTime"
+  .then(async function(token){
+    await window.gapi.client.request({
+      path: `https://www.googleapis.com/oauth2/v2/tokeninfo?access_token=${user.access_token}&key=AIzaSyB3DyA_gJJn94MlsHdxoALORleuDNagzD0`,
+      method: 'post'
     })
+    return window.gapi.client.request({
+      path: 'https://content.googleapis.com/calendar/v3/calendars/primary/events?key=AIzaSyB3DyA_gJJn94MlsHdxoALORleuDNagzD0',
+      headers: {
+        authorization: `Bearer ${user.access_token}`
+      }
+    });
+  //  return window.gapi.client.calendar.events
+  //   .list({
+  //     calendarId: "primary",
+  //     timeMin: new Date().toISOString(),
+  //     showDeleted: false,
+  //     singleEvents: true,
+  //     maxResults: 10,
+  //     orderBy: "startTime"
+  //   })
   })
   .then(function(response) {
     console.log(response);
