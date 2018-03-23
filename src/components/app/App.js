@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navigation from '../navigation/Navigation';
 import Dashboard from '../dashboard/Dashboard';
 import Calendar from '../calendar/Calendar';
+import Login from '../login/Login';
 
 import './App.css';
 
@@ -16,6 +17,7 @@ const App = () => (
       <Route exact path="/" component={Home} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/calendar" component={Calendar} />
+      <Route path="/login" component={Login} />
     </div>
   </Router>
 );

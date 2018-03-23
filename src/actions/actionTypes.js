@@ -1,3 +1,7 @@
 export const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
 
 export const SET_EVENTS = 'SET_EVENTS';
+
+export const GAPI_LOAD = 'GAPI_LOAD';
+export const GAPI_AUTHORIZE = 'GAPI_AUTHORIZE';
+export const GAPI_REQUEST_EVENTS = 'GET_CALENDAR_EVENTS';
