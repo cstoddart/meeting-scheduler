@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import accessToken from './accessTokenReducer';
+import auth from './authReducer';
 import events from './eventReducer';
 
 const rootReducer = combineReducers({
-  accessToken,
+  auth,
   events
 });
 
