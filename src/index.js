@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { configureStore } from './store/configureStore';
+import { Provider } from 'mobx-react';
 import App from './components/app/App';
 import registerServiceWorker from './registerServiceWorker';
-import axios from 'axios';
+
+import { AuthStore } from './store/authStore';
+import { EventsStore } from './store/eventsStore';
+
+const authStore = new AuthStore();
+const eventsStore = new EventsStore();
 
 require('dotenv').config();
 
-const store = configureStore();
-
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider
+    authStore={authStore}
+    eventsStore={eventsStore}
+  >
     <div>
       <App />
     </div>

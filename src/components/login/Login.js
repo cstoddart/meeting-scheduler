@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as authActions from '../../actions/authActions';
+import { observer, inject } from 'mobx-react';
 
+@inject(store => ({
+  accessToken: store.authStore.accessToken,
+  setAccessToken: store.authStore.setAccessToken
+}))
+@observer
 class Login extends Component {
-  handleSignIn = () => {
-    this.props.authActions.authorizeUser();
+  handleSignIn = async () => {
+    console.log("PROPS@LOGIN", this.props);
+
+    this.props.setAccessToken();
+
+    console.log('accessToken', this.props.accessToken);
   }
 
   render() {
