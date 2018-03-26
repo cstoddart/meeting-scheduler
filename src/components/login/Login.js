@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { observer, inject } from 'mobx-react';
-
-@inject(store => ({
-  accessToken: store.authStore.accessToken,
-  setAccessToken: store.authStore.setAccessToken
-}))
-@observer
+import { googleAuth } from '../../services/googleAuth';
 class Login extends Component {
   handleSignIn = async () => {
-    console.log("PROPS@LOGIN", this.props);
-
-    this.props.setAccessToken();
-
-    console.log('accessToken', this.props.accessToken);
+    googleAuth(() => console.log("Signing in..."));
   }
 
   render() {

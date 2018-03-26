@@ -5,8 +5,8 @@ export class EventsStore {
   @observable events = [];
 
   @action.bound
-  getEvents = async (accessToken) => {
-    getCalendarEvents(accessToken, (events) => {
+  getEvents = () => {
+    getCalendarEvents((events) => {
       console.log("Setting events...", events);
       this.events = events;
     });
