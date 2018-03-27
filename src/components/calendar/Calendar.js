@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
-@inject(store => ({
+@inject((store) => ({
   getEvents: store.eventsStore.getEvents,
-  events: store.eventsStore.events
+  events: store.eventsStore.events,
 }))
 @observer
 class Calendar extends Component {
-  async componentDidMount() {
+  componentDidMount() {
     this.props.getEvents();
   }
 
@@ -16,18 +16,19 @@ class Calendar extends Component {
     return (
       <div>
         <h1>Calendar</h1>
-        {this.props.events.map(event => (
+        {this.props.events.map((event) => (
           <div>
             {event.summary}
           </div>
         ))}
       </div>
-    )
+    );
   }
 }
 
 Calendar.propTypes = {
-  accessToken: PropTypes.string
-}
+  getEvents: PropTypes.func,
+  events: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default Calendar;

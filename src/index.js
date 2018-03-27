@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import App from './components/app/App';
-import registerServiceWorker from './registerServiceWorker';
 
 import { AuthStore } from './store/authStore';
 import { EventsStore } from './store/eventsStore';
@@ -22,5 +21,3 @@ ReactDOM.render(
     </div>
   </Provider>, document.getElementById('root')
 );
-
-registerServiceWorker();

@@ -1,0 +1,6 @@
+{
+  "extends": "@dialexa/eslint-config-dialexa/react",
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"]
+  }
+}
