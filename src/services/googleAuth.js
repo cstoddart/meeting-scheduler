@@ -30,4 +30,3 @@ const initializeAuth = (callback) => {
 export const googleAuth = (callback) => {
   window.gapi.load('client:auth2', () => initializeAuth(callback));
 };
-
