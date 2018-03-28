@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
-@inject((store) => ({
-  getEvents: store.eventsStore.getEvents,
-  events: store.eventsStore.events,
+@inject(({ eventsStore }) => ({
+  getEvents: eventsStore.getEvents,
+  events: eventsStore.events,
 }))
 @observer
 class Calendar extends Component {

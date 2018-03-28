@@ -1,4 +1,5 @@
 import { googleAuth } from './googleAuth';
+import { rooms } from '../rooms';
 
 const listEvents = (opts, callback) => () => {
   window.gapi.client.calendar.events.list({
@@ -9,10 +10,20 @@ const listEvents = (opts, callback) => () => {
   }).execute((events) => callback(events.items));
 };
 
-export const getCalendarEvents = (opts, callback) => {
-  if (window.gapi.client && window.gapi.client.calendar) {
-    listEvents(opts, callback)();
-  } else {
-    googleAuth(listEvents(opts, callback));
-  }
+export const getCalendarEvents = (opts) => {
+  return new Promise((resolve, reject) => {
+    if (window.gapi.client && window.gapi.client.calendar) {
+      listEvents(opts, (events, err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(events);
+        }
+      })();
+    } else {
+      googleAuth(listEvents(opts, (events) => {
+        resolve(events);
+      }));
+    }
+  });
 };

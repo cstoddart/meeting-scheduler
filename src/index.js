@@ -3,11 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import App from './components/app/App';
 
-import { AuthStore } from './store/authStore';
-import { EventsStore } from './store/eventsStore';
-
-const authStore = new AuthStore();
-const eventsStore = new EventsStore();
+import authStore from './store/authStore';
+import eventsStore from './store/eventsStore';
 
 require('dotenv').config();
 
