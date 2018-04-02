@@ -1,33 +1,33 @@
+// import Promise from 'bluebird';
 import { googleApiKey, googleClientId } from '../keys';
 
 const scope = 'email profile https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly';
 
-const signIn = (callback) => {
-  const GoogleAuth = window.gapi.auth2.getAuthInstance();
-  GoogleAuth.signIn({
-    scope,
-  }).then(() => callback());
-};
+async function signIn() {
+  return await window.gapi.auth2.getAuthInstance()
+    .then(async (GoogleAuth) => await GoogleAuth.signIn({ scope }));
+}
 
-const initializeClient = (callback) => {
-  window.gapi.client.init({
+async function initializeClient() {
+  return await window.gapi.client.init({
     apiKey: googleApiKey,
     discoveryDocs: [
       'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
     ],
     clientId: googleClientId,
     scope,
-  }).then(() => signIn(callback));
-};
+  }).then(() => signIn());
+}
 
-const initializeAuth = (callback) => {
-  window.gapi.auth2.init({
+async function initializeAuth() {
+  return await window.gapi.auth2.init({
     client_id: googleClientId,
     scope,
-  }).then(() => initializeClient(callback));
-};
+  }).then(() => initializeClient());
+}
 
-export const googleAuth = (callback) => {
-  window.gapi.load('client:auth2', () => initializeAuth(callback));
-};
-
+export async function googleAuth() {
+  const data = await window.gapi.load('client:auth2', () => initializeAuth());
+  console.log('DATA', data);
+  return data;
+}

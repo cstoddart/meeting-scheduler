@@ -1,14 +1,17 @@
 import { observable, action } from 'mobx';
 import { googleAuth } from '../services/googleAuth';
 
-export class AuthStore {
+class AuthStore {
   @observable accessToken = localStorage.getItem('accessToken') || '';
 
   @action.bound
-  setAccessToken() {
-    googleAuth((accessToken) => {
-      this.accessToken = accessToken;
-      localStorage.setItem('accessToken', accessToken);
-    });
+  async setAccessToken() {
+    console.log('@setAccessToken...');
+    const accessToken = await googleAuth();
+
+    this.accessToken = accessToken;
+    localStorage.setItem('accessToken', accessToken);
   }
 }
+
+export default new AuthStore();

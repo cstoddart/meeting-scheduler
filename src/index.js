@@ -6,8 +6,6 @@ import App from './components/app/App';
 import authStore from './store/authStore';
 import eventsStore from './store/eventsStore';
 
-require('dotenv').config();
-
 ReactDOM.render(
   <Provider
     authStore={authStore}
