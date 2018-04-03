@@ -17,7 +17,7 @@ class Calendar extends Component {
       <div>
         <h1>Calendar</h1>
         {this.props.events.map((event) => (
-          <div>
+          <div key={event.id}>
             {event.summary}
           </div>
         ))}

@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
 
 module.exports = {
   entry: [
@@ -39,7 +40,7 @@ module.exports = {
     }),
   ],
   output: {
-    path: `${__dirname }/dist`,
+    path: path.resolve(__dirname, '/dist'),
     publicPath: '/',
     filename: 'bundle.[hash].js',
   },
