@@ -1,37 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-// import { googleAuth } from '../../services/googleAuth';
-import { observer, inject } from 'mobx-react';
 
-// @inject((stores) => ({
-//   setAccessToken: stores.authStore.setAccessToken,
-// }))
-@inject((stores) => {
-  console.log('STORES', stores.authStore);
-  return {
-    setAccessToken: stores.authStore.setAccessToken,
-  };
-})
-@observer
-class Login extends Component {
-  handleSignIn = () => {
-    console.log('@handleSignIn()...');
-    console.log('setAccess', this.props.setAccessToken);
-    this.props.setAccessToken();
+import { signIn, isSignedIn } from '../../services/googleAuth';
+
+class Login extends React.Component {
+  async componentDidMount() {
+    const signedIn = await isSignedIn();
+    console.log(signedIn);
   }
 
   render() {
     return (
-      <div>
-        <button onClick={this.handleSignIn}>Sign In</button>
-      </div>
+      <button onClick={signIn}>Sign In</button>
     );
   }
 }
-
-Login.propTypes = {
-  setAccessToken: PropTypes.func,
-};
 
 export default withRouter(Login);

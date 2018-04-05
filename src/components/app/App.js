@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import { googleInit } from '../../services/googleInit';
 
 import Navigation from '../navigation/Navigation';
 import Dashboard from '../dashboard/Dashboard';
@@ -8,18 +10,23 @@ import Login from '../login/Login';
 
 import './App.css';
 
-const Home = () => <h1>Home</h1>;
+class App extends Component {
+  componentDidMount() {
+    googleInit();
+  }
 
-const App = () => (
-  <Router>
-    <div>
-      <Navigation />
-      <Route exact path="/" component={Home} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/calendar" component={Calendar} />
-      <Route path="/login" component={Login} />
-    </div>
-  </Router>
-);
+  render() {
+    return (
+      <Router>
+        <Fragment>
+          <Navigation />
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/calendar" component={Calendar} />
+          <Route path="/login" component={Login} />
+        </Fragment>
+      </Router>
+    );
+  }
+}
 
 export default App;

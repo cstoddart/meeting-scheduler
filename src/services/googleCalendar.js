@@ -1,21 +1,34 @@
-import { googleAuth } from './googleAuth';
-// import { rooms } from '../rooms';
+import { googleInit } from './googleInit';
+import { rooms } from '../constants/rooms';
 
-const listEvents = (init) => {
-  console.log('INIT@LISTEVENTS', init);
+const listEvents = async (opts = {}) => {
+  const roomNames = opts.rooms || rooms.map((room) => room.name);
+  const events = [];
 
-  return window.gapi.client.calendar.events.list({
-    // calendarId: "primary",
-    calendarId: 'dialexa.com_36333236303434362d393430@resource.calendar.google.com',
-    timeMax: '2018-02-03T10:00:00-07:00',
-    timeMin: '2018-01-03T10:00:00-07:00',
-  }).then(({ result }) => result.items);
-};
-
-export const getCalendarEvents = () => {
-  if (window.gapi.client && window.gapi.client.calendar) {
-    return listEvents();
+  for (const roomName of roomNames) {
+    const { id } = rooms.find((room) => room.name === roomName);
+    await window.gapi.client.calendar.events.list({
+      calendarId: id,
+      timeMax: '2018-01-10T10:00:00-07:00',
+      timeMin: '2018-01-03T10:00:00-07:00',
+    }).then(({ result }) => {
+      events.push({
+        name: roomName,
+        items: result.items,
+      });
+    });
   }
 
-  return googleAuth().then(listEvents);
+  return events.sort((a, b) => {
+    if (a.name < b.name) return -1;
+    return 1;
+  });
+};
+
+export const getCalendarEvents = (opts) => {
+  if (window.gapi.client && window.gapi.client.calendar) {
+    return listEvents(opts);
+  }
+
+  return googleInit().then(listEvents(opts));
 };

@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
-@inject(({ eventsStore }) => ({
-  getEvents: eventsStore.getEvents,
-  events: eventsStore.events,
+import Row from './row/Row';
+
+@inject(({ store }) => ({
+  getEvents: store.getEvents,
+  events: store.events,
 }))
 @observer
 class Calendar extends Component {
@@ -14,14 +16,12 @@ class Calendar extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <h1>Calendar</h1>
-        {this.props.events.map((event) => (
-          <div key={event.id}>
-            {event.summary}
-          </div>
+        {this.props.events && this.props.events.map((room) => (
+          <Row key={room.name} room={room} />
         ))}
-      </div>
+      </Fragment>
     );
   }
 }
