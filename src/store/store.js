@@ -2,17 +2,12 @@ import { observable, action } from 'mobx';
 import { getCalendarEvents } from '../services/googleCalendar';
 
 class Store {
-  @observable events = [];
+  @observable roomEvents = [];
 
-  @action.bound
-  async getEvents(opts) {
-    const events = await getCalendarEvents(opts);
-    this.events = events;
-  }
-
-  @action.bound
-  setEvents(events) {
-    this.events = events;
+  @action
+  getEvents = async (opts) => {
+    const roomEvents = await getCalendarEvents(opts);
+    this.roomEvents = roomEvents;
   }
 }
 

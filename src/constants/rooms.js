@@ -1,4 +1,4 @@
-export const rooms = [
+export const roomsArray = [
   {
     name: 'Blue Couches',
     id: 'dialexa.com_2d36353630343238393639@resource.calendar.google.com',

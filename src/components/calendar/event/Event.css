@@ -1,0 +1,9 @@
+.event {
+  outline: 1px solid grey;
+  position: absolute;
+  height: 74px;
+}
+
+.eventContent {
+  padding: 10px;
+}

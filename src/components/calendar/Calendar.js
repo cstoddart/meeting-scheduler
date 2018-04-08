@@ -1,34 +1,51 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
+import { subDays, addDays } from 'date-fns';
 
-import Row from './row/Row';
+import CalendarRows from './calendarRows/CalendarRows';
+
+import './Calendar.css';
 
 @inject(({ store }) => ({
   getEvents: store.getEvents,
-  events: store.events,
+  roomEvents: store.roomEvents,
 }))
 @observer
 class Calendar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      calendarView: new Date(),
+    };
+  }
   componentDidMount() {
     this.props.getEvents();
   }
 
+  changeView(calendarView) {
+    this.setState({ calendarView });
+    this.props.getEvents({ calendarView });
+  }
+
   render() {
     return (
-      <Fragment>
+      <div className="calendar">
         <h1>Calendar</h1>
-        {this.props.events && this.props.events.map((room) => (
-          <Row key={room.name} room={room} />
-        ))}
-      </Fragment>
+        <div className="calendarHead">
+          <button onClick={() => this.changeView(subDays(this.state.calendarView, 1))}>Left</button>
+          <button onClick={() => this.changeView(addDays(this.state.calendarView, 1))}>Right</button>
+        </div>
+        <h1>{this.state.calendarView.toString()}</h1>
+        <CalendarRows roomEvents={this.props.roomEvents} />
+      </div>
     );
   }
 }
 
 Calendar.propTypes = {
   getEvents: PropTypes.func,
-  events: PropTypes.arrayOf(PropTypes.object),
+  roomEvents: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Calendar;

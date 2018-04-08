@@ -1,0 +1,40 @@
+.calendarRows {
+  display: flex;
+}
+
+.rowHeaders {
+  display: flex;
+  flex-direction: column;
+}
+
+.rowHeader {
+  background-color: gray;
+  color: white;
+  padding: 10px;
+  height: 75px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.rowHeader h2 {
+  margin: 0;
+}
+
+.rowsContainer {
+  overflow-x: scroll;
+  background-color: whitesmoke;
+  position: relative;
+  max-width: 100%;
+}
+
+.rows {
+  min-width: 6000px; /* 24 hours * 250px per hour = 6000px */
+}
+
+.rowContent {
+  padding: 10px;
+  display:flex;
+  height: 75px;
+}
