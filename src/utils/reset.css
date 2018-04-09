@@ -17,6 +17,7 @@ time, mark, audio, video {
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
+  box-sizing: border-box;
 }
 
 body {
@@ -90,5 +91,5 @@ hr {
 }
 
 input, select {
-    vertical-align: middle;
+  vertical-align: middle;
 }

@@ -2,4 +2,9 @@
   border-left: 1px solid black;
   height: 100%;
   position: absolute;
+  width: fit-content;
+}
+
+.gridLine.halfHour {
+  border-left-color: lightgrey;
 }

@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 
+import { hourSize } from '../../../constants';
+import { toStandardTime } from '../../../utils';
 import './GridLines.css';
 
 const hours = [];
@@ -7,22 +9,17 @@ for (let x = 0; x < 24; x++) {
   hours.push(x);
 }
 
-class GridLines extends Component {
-  calculatePosition(hour) {
-    const position = hour * 250;
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        {hours.map((hour, index) => (
-          <div className="gridLine" style={{ left: `${hour * 250}px` }}>
-            {index}
-          </div>
-        ))}
-      </React.Fragment>
-    );
-  }
-}
+const GridLines = () => (
+  <div>
+    {hours.map((hour) => (
+      <Fragment>
+        <div className="gridLine" style={{ left: `${hour * hourSize}px` }}>
+          {toStandardTime({ hours: hour })}
+        </div>
+        <div className="gridLine halfHour" style={{ left: `${(hour * hourSize) + (hourSize / 2)}px` }} />
+      </Fragment>
+    ))}
+  </div>
+);
 
 export default GridLines;

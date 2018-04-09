@@ -4,7 +4,6 @@ import { PropTypes as mobxTypes } from 'mobx-react';
 
 import Event from '../event/Event';
 import GridLines from '../gridLines/GridLines';
-
 import './CalendarRows.css';
 
 const CalendarRows = (props) => (
@@ -22,8 +21,8 @@ const CalendarRows = (props) => (
         {props.roomEvents.map((room, index) => (
           <div key={`${room.name}${index}`} className="rowContent">
             {room.events.length ?
-              room.events.map((event) => <Event key={event.id} event={event} />) :
-              <div key={index}>No Events</div>
+              room.events.map((event) => <Event key={event.id} event={event} />)
+              : null
             }
           </div>
         ))}

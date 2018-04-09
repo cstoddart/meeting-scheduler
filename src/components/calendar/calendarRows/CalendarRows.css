@@ -12,7 +12,7 @@
   color: white;
   padding: 10px;
   height: 75px;
-  width: 100px;
+  width: 150px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -23,10 +23,9 @@
 }
 
 .rowsContainer {
-  overflow-x: scroll;
   background-color: whitesmoke;
   position: relative;
-  max-width: 100%;
+  overflow-x: scroll;
 }
 
 .rows {
@@ -34,7 +33,6 @@
 }
 
 .rowContent {
-  padding: 10px;
   display:flex;
   height: 75px;
 }

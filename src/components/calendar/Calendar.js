@@ -4,7 +4,6 @@ import { observer, inject } from 'mobx-react';
 import { subDays, addDays } from 'date-fns';
 
 import CalendarRows from './calendarRows/CalendarRows';
-
 import './Calendar.css';
 
 @inject(({ store }) => ({
