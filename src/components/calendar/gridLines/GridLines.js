@@ -12,8 +12,8 @@ for (let x = 0; x < 24; x++) {
 const GridLines = () => (
   <div>
     {hours.map((hour) => (
-      <Fragment>
-        <div className="gridLine" style={{ left: `${hour * hourSize}px` }}>
+      <Fragment key={hour}>
+        <div className="gridLine" style={{ left: `${(hour * hourSize) - 1}px` }}>
           {toStandardTime({ hours: hour })}
         </div>
         <div className="gridLine halfHour" style={{ left: `${(hour * hourSize) + (hourSize / 2)}px` }} />

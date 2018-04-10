@@ -12,8 +12,8 @@ import './Calendar.css';
 }))
 @observer
 class Calendar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       calendarView: new Date(),
     };
@@ -36,7 +36,10 @@ class Calendar extends Component {
           <button onClick={() => this.changeView(addDays(this.state.calendarView, 1))}>Right</button>
         </div>
         <h1>{this.state.calendarView.toString()}</h1>
-        <CalendarRows roomEvents={this.props.roomEvents} />
+        {this.props.roomEvents.length ?
+          <CalendarRows roomEvents={this.props.roomEvents} />
+          : <div>Loading Events</div>
+        }
       </div>
     );
   }

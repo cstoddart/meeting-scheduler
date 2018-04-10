@@ -1,10 +1,10 @@
 .gridLine {
-  border-left: 1px solid black;
+  border-left: 2px solid #9ca5a7;
   height: 100%;
   position: absolute;
   width: fit-content;
 }
 
 .gridLine.halfHour {
-  border-left-color: lightgrey;
+  border-left: 1px solid lightgrey;
 }

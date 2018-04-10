@@ -5,8 +5,8 @@ import { hourSize } from '../../../constants';
 import './Event.css';
 
 class Event extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       width: 0,
       position: 0,
@@ -40,20 +40,23 @@ class Event extends Component {
   }
 
   render() {
+    const { event } = this.props;
     return (
       <div
-        className="event"
+        className={`event ${this.props.isSelected === this.props.event.id ? 'selected' : null}`}
         style={{
           minWidth: `${this.state.width}px`,
           maxWidth: `${this.state.width}px`,
+          // width: `${this.state.width}px`,
           left: `${this.state.position}px`,
         }}
         data-width={this.state.width}
         data-position={this.state.position}
+        onClick={() => this.props.selectEvent(event.id)}
       >
         <div className="eventContent">
-          <p>{this.props.event.summary}</p>
-          <p className="eventCreator">{this.props.event.creator.displayName || this.props.event.creator.email}</p>
+          <p className="eventTitle">{event.summary}</p>
+          <p className="eventCreator">{event.creator.displayName || event.creator.email}</p>
         </div>
       </div>
     );
@@ -68,6 +71,10 @@ Event.propTypes = {
     }),
     end: PropTypes.shape({
       dateTime: PropTypes.string,
+    }),
+    creator: PropTypes.shape({
+      displayName: PropTypes.string,
+      email: PropTypes.string,
     }),
   }),
 };

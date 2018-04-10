@@ -8,7 +8,7 @@
 }
 
 .rowHeader {
-  background-color: gray;
+  background-color: #14282d;
   color: white;
   padding: 10px;
   height: 75px;
@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  border-bottom: 2px solid #203338;
 }
 
 .rowHeader h2 {
@@ -23,9 +24,9 @@
 }
 
 .rowsContainer {
-  background-color: whitesmoke;
   position: relative;
   overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .rows {

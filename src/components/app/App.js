@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <Router>
         <div className="pageContainer">
-          <Navigation />
+          {/* <Navigation /> */}
           <div className="mainContent">
             <Route exact path="/" component={Dashboard} />
             <Route path="/calendar" component={Calendar} />
