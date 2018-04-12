@@ -8,23 +8,24 @@
 
 .calendarSidebar {
   position: absolute;
-  top: 0;
+  top: 50px; /* TODO: Set Dynamically */
   left: 0;
+  right: 0;
+  bottom: 17px; /* TODO: Set Dynamically */
   z-index: 500;
   max-height: 100%;
   pointer-events: none;
   background-color: #14282d;
   width: 165px; /* TODO: Set Dynamically */
-  height: 100%;
   overflow: hidden;
 }
 
 .calendarRowHeaders {
   position: absolute;
-  top: 50px; /* TODO: Set Dynamically */
+  top: 0;
   left: 0;
   right: -17px; /* TODO: Set Dynamically */
-  bottom: 17px; /* TODO: Set Dynamically */
+  bottom: 0;
   overflow-y: scroll;
   overflow-x: hidden;
 }
