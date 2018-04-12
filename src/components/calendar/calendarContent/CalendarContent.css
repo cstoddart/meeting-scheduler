@@ -1,0 +1,87 @@
+.calendarContent {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  padding-top: 50px; /* TODO: Set Dynamically */
+  padding-left: 165px; /* TODO: Set Dynamically */
+}
+
+.calendarSidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  max-height: 100%;
+  pointer-events: none;
+  background-color: #14282d;
+  width: 165px; /* TODO: Set Dynamically */
+  height: 100%;
+  overflow: hidden;
+}
+
+.calendarRowHeaders {
+  position: absolute;
+  top: 50px; /* TODO: Set Dynamically */
+  left: 0;
+  right: -17px; /* TODO: Set Dynamically */
+  bottom: 17px; /* TODO: Set Dynamically */
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.calendarRowHeader {
+  color: white;
+  padding: 10px;
+  height: 75px;
+  min-height: 75px; /* Why Are Both Needed For Scroll? */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 2px solid #203338;
+}
+
+.calendarHeader {
+  position: absolute;
+  top: 0;
+  left: 165px;
+  align-items: center;
+  z-index: 500;
+  max-width: calc(100% - 165px); /* TODO: Set Dynamically (165px) */
+  pointer-events: none;
+  height: 50px; /* TODO: Set Dynamically */
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+}
+
+.hourMarkers {
+  width: 6000px; /* TODO: Set Dynamically */
+  overflow-x: scroll;
+  overflow-y: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -17px; /* TODO: Set Dynamically */
+}
+
+.hourMarker {
+  position: absolute;
+  white-space: nowrap;
+}
+
+.calendarRows {
+  overflow: scroll;
+  position: relative;
+  height: 100%;
+}
+
+.calendarRow {
+  display:flex;
+  height: 75px;
+  width: 6000px; /* TODO: Set Dynamically */
+}
+
+.calendarRow:hover {
+  background-color: whitesmoke;
+}

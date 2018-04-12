@@ -26,14 +26,21 @@ const listEvents = async (opts = {}) => {
   }
 
   for (const room of roomEvents) {
-    room.events = room.events.filter((item) => {
-      if (item.status === 'cancelled') return false;
+    const eventIds = [];
+    room.events = room.events.filter((event) => {
+      if (event.status === 'cancelled') return false;
 
-      const itemStart = new Date(item.start.dateTime).getTime();
-      const itemEnd = new Date(item.end.dateTime).getTime();
+      if (eventIds.includes(event.etag)) {
+        return false;
+      }
 
-      return (itemStart > new Date(start).getTime()) &&
-      (itemEnd < new Date(end).getTime());
+      eventIds.push(event.etag);
+
+      const eventStart = new Date(event.start.dateTime).getTime();
+      const eventEnd = new Date(event.end.dateTime).getTime();
+
+      return (eventStart > new Date(start).getTime()) &&
+      (eventEnd < new Date(end).getTime());
     });
   }
 

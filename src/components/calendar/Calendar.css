@@ -1,3 +1,8 @@
 .calendar {
-  max-height: 650px;
+  height: 100%;
+  padding-top: 100px; /* TODO: Set Dynamically */
+}
+
+.calendarHead {
+  position: absolute;
 }
