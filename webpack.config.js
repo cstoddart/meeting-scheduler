@@ -25,10 +25,24 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        // use: [MiniCssExtractPlugin.loader, 'css-loader'],
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
+        ],
+      },
+      {
+        test: /\.ttf$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 50000,
+          },
+        },
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
         ],
       },
     ],

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
-import { subDays, addDays } from 'date-fns';
+// import { subDays, addDays } from 'date-fns';
 
 import CalendarContent from './calendarContent/CalendarContent';
+import Loading from '../loading/Loading';
 import './Calendar.css';
 
 @inject(({ store }) => ({
@@ -30,14 +31,9 @@ class Calendar extends Component {
   render() {
     return (
       <div className="calendar">
-        {/* <div className="calendarHead">
-          <button onClick={() => this.changeView(subDays(this.state.calendarView, 1))}>Left</button>
-          <button onClick={() => this.changeView(addDays(this.state.calendarView, 1))}>Right</button>
-          <h1>{this.state.calendarView.toString()}</h1>
-        </div> */}
         {this.props.roomEvents.length ?
-          <CalendarContent roomEvents={this.props.roomEvents} />
-          : <div>Loading Events</div>
+          <CalendarContent roomEvents={this.props.roomEvents} changeView={(calendarView) => this.changeView(calendarView)} calendarView={this.state.calendarView} />
+          : <Loading />
         }
       </div>
     );

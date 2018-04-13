@@ -2,32 +2,68 @@
   height: 100%;
   position: relative;
   overflow: hidden;
-  padding-top: 50px; /* TODO: Set Dynamically */
-  padding-left: 165px; /* TODO: Set Dynamically */
+  padding-top: 70px; /* TODO: Set Dynamically */
+  padding-left: 200px; /* TODO: Set Dynamically */
+  background-color: #14282d;
 }
 
 .calendarSidebar {
   position: absolute;
-  top: 50px; /* TODO: Set Dynamically */
+  top: 0; /* TODO: Set Dynamically */
   left: 0;
   right: 0;
   bottom: 17px; /* TODO: Set Dynamically */
   z-index: 500;
   max-height: 100%;
-  pointer-events: none;
   background-color: #14282d;
-  width: 165px; /* TODO: Set Dynamically */
+  width: 200px; /* TODO: Set Dynamically */
   overflow: hidden;
+}
+
+.calendarControls {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #203338;
+}
+
+.calendarDate {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+}
+
+.nextDate {
+  background-image: url('../../../assets/images/next.svg');
+  margin-left: 15px;
+}
+
+.prevDate {
+  background-image: url('../../../assets/images/prev.svg');
+}
+
+.nextDate, .prevDate {
+  color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 25px;
+  width: 25px;
 }
 
 .calendarRowHeaders {
   position: absolute;
-  top: 0;
+  top: 70px;
   left: 0;
   right: -17px; /* TODO: Set Dynamically */
   bottom: 0;
   overflow-y: scroll;
   overflow-x: hidden;
+  pointer-events: none;
 }
 
 .calendarRowHeader {
@@ -41,22 +77,33 @@
   border-bottom: 2px solid #203338;
 }
 
+.calendarRowHeader:first-child {
+  border-top: 2px solid #203338;
+}
+
+.calendarRowHeaderImg {
+  width: 25px;
+  margin-right:15px;
+}
+
 .calendarHeader {
   position: absolute;
   top: 0;
-  left: 165px;
+  left: 200px;
   align-items: center;
   z-index: 500;
-  max-width: calc(100% - 165px); /* TODO: Set Dynamically (165px) */
+  max-width: calc(100% - 200px); /* TODO: Set Dynamically (200px) */
   pointer-events: none;
-  height: 50px; /* TODO: Set Dynamically */
+  height: 70px; /* TODO: Set Dynamically */
   width: 100%;
   overflow: hidden;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15); */
+  padding-right: 17px; /* TODO: Set Dynamically */
+  background-color: whitesmoke;
 }
 
 .hourMarkers {
-  width: 6000px; /* TODO: Set Dynamically */
+  width: 6017px; /* TODO: Set Dynamically (24 * hourSize + scrollBar width)*/
   overflow-x: scroll;
   overflow-y: hidden;
   position: absolute;
@@ -64,17 +111,34 @@
   left: 0;
   right: 0;
   bottom: -17px; /* TODO: Set Dynamically */
+  padding-top: 40px; /* TODO: Set Dynamically */
 }
 
 .hourMarker {
   position: absolute;
   white-space: nowrap;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-left: 10px;
+}
+
+.hourMarker:before {
+  content: '';
+  position: absolute;
+  top: -40px; /* TODO: Set Dynamically */
+  left: -1px;
+  height: 70px;
+  width: 3px;
+  border-left: 2px solid #9ca5a7;
 }
 
 .calendarRows {
   overflow: scroll;
   position: relative;
   height: 100%;
+  box-shadow: inset 1px 0px 4px 1px rgba(0, 0, 0, 0.25);
+  background-color: white;
 }
 
 .calendarRow {
@@ -84,5 +148,5 @@
 }
 
 .calendarRow:hover {
-  background-color: whitesmoke;
+  background-color: rgba(20, 40, 45, 0.15);
 }

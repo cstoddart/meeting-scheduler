@@ -1,0 +1,103 @@
+@keyframes loading {
+  15% {
+    transform: translateX(0);
+  }
+
+  45% {
+    transform: translateX(200px); /* $loader--width - $loader-dot--size */
+  }
+
+  65% {
+    transform: translateX(200px); /* $loader--width - $loader-dot--size */
+  }
+
+  95% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes loadingText {
+  0% {
+    content: "Loading Events"
+  }
+
+  25% {
+    content: "Loading Events."
+  }
+
+  50% {
+    content: "Loading Events.."
+  }
+
+  75% {
+    content: "Loading Events..."
+  }
+}
+
+.loading {
+  position: absolute;
+  top: 250px;
+  left: 0;
+  right: 0;
+  width: 220px;
+  margin: 0 auto;
+  height: 150px;
+}
+
+.loadingDot {
+  animation: loading ease-in-out 3s infinite;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background-color: blue;
+  border: 1px solid rgba(20, 40, 45, 0.25);
+  border-radius: 100%;
+}
+
+.loadingDot:nth-child(1) {
+  background-color: #b99141;
+  animation-delay: 0.5s;
+}
+
+.loadingDot:nth-child(2) {
+  background-color: #d6b064;
+  animation-delay: 0.4s;
+}
+
+.loadingDot:nth-child(3) {
+  background-color: whitesmoke;
+  animation-delay: 0.3s;
+}
+
+.loadingDot:nth-child(4) {
+  background-color: #dcdfe0;
+  animation-delay: 0.2s;
+}
+
+.loadingDot:nth-child(5) {
+  background-color: #203338;
+  animation-delay: 0.1s;
+}
+
+.loadingDot:nth-child(6) {
+  background-color: #14282d;
+  animation-delay: 0s;
+}
+
+.loadingText {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  width: 175px;
+  margin: 0 auto;
+}
+
+.loadingText:after {
+  content: 'Loading Events';
+  font-size: 16px;
+  font-weight: bold;
+  animation: loadingText 3s infinite;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

@@ -7,5 +7,11 @@
   align-items: center;
   height: 100px; /* TODO: Set Dynamically */
   padding: 25px;
-  background-color: whitesmoke;
+  background-color: white;
+  box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.2);
+  z-index: 600;
+}
+
+.logo {
+  max-width: 250px;
 }
