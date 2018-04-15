@@ -1,0 +1,78 @@
+.calendarSidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 17px; /* TODO: Set Dynamically */
+  z-index: 500;
+  max-height: 100%;
+  background-color: #14282d;
+  width: var(--calendarSidebarWidth);
+  overflow: hidden;
+}
+
+.calendarControls {
+  height: var(--calendarHeaderHeight);
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #203338;
+}
+
+.calendarDate {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+}
+
+.nextDate {
+  background-image: url('../../../assets/images/next.svg');
+  margin-left: 15px;
+}
+
+.prevDate {
+  background-image: url('../../../assets/images/prev.svg');
+}
+
+.nextDate, .prevDate {
+  color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 25px;
+  width: 25px;
+}
+
+.calendarRowHeaders {
+  position: absolute;
+  top: var(--calendarHeaderHeight);
+  left: 0;
+  right: -17px; /* TODO: Set Dynamically */
+  bottom: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  pointer-events: none;
+}
+
+.calendarRowHeader {
+  color: white;
+  padding: 10px;
+  height: var(--calendarRowHeight);
+  min-height: var(--calendarRowHeight); /* Why Are Both Needed For Scroll? */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 2px solid #203338;
+}
+
+.calendarRowHeader:first-child {
+  border-top: 2px solid #203338;
+}
+
+.calendarRowHeaderImg {
+  width: 25px;
+  margin-right:15px;
+}

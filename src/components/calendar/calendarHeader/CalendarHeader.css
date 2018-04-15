@@ -1,0 +1,47 @@
+.calendarHeader {
+  position: absolute;
+  top: 0;
+  left: 200px;
+  align-items: center;
+  z-index: 500;
+  max-width: calc(100% - var(--calendarSidebarWidth));
+  pointer-events: none;
+  height: var(--calendarHeaderHeight);
+  width: 100%;
+  overflow: hidden;
+  padding-right: 17px; /* TODO: Set Dynamically */
+  background-color: whitesmoke;
+}
+
+.hourMarkers {
+  width: calc(24 * var(--hourScale) + 17px); /* TODO: Set Dynamically (24 * hourScale + scrollBar width)*/
+  overflow-x: scroll;
+  overflow-y: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -17px; /* TODO: Set Dynamically */
+  padding-top: 45px; /* TODO: Set Dynamically */
+}
+
+.hourMarker {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-left: 10px;
+  height: 16px;
+  bottom:10px;
+}
+
+.hourMarker:before {
+  content: '';
+  position: absolute;
+  top: -44px; /* TODO: Set Dynamically */
+  left: -1px;
+  height: var(--calendarHeaderHeight);
+  width: 3px;
+  border-left: 2px solid #9ca5a7;
+}

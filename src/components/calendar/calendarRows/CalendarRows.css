@@ -1,0 +1,17 @@
+.calendarRows {
+  overflow: scroll;
+  position: relative;
+  height: 100%;
+  box-shadow: inset 1px 0px 4px 1px rgba(0, 0, 0, 0.25);
+  background-color: white;
+}
+
+.calendarRow {
+  display:flex;
+  height: var(--calendarRowHeight);
+  width: calc(24 * var(--hourScale));
+}
+
+.calendarRow:hover {
+  background-color: rgba(20, 40, 45, 0.15);
+}
