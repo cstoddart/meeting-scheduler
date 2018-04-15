@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { hourSize } from '../../../constants';
+import { hourScale } from '../../../constants';
 import './Event.css';
 
 class Event extends Component {
@@ -21,7 +21,7 @@ class Event extends Component {
     const start = new Date(this.props.event.start.dateTime);
     const hours = start.getHours();
     const minutes = start.getMinutes();
-    const position = (hours + (minutes / 60)) * hourSize;
+    const position = (hours + (minutes / 60)) * hourScale;
 
     this.setState({
       position,
@@ -32,7 +32,7 @@ class Event extends Component {
     const start = new Date(this.props.event.start.dateTime).getTime();
     const end = new Date(this.props.event.end.dateTime).getTime();
     const duration = (end - start) / 3600000;
-    const width = duration * hourSize;
+    const width = duration * hourScale;
 
     this.setState({
       width,

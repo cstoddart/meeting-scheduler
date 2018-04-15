@@ -2,26 +2,26 @@
   height: 100%;
   position: relative;
   overflow: hidden;
-  padding-top: 70px; /* TODO: Set Dynamically */
-  padding-left: 200px; /* TODO: Set Dynamically */
+  padding-top: var(--calendarHeaderHeight);
+  padding-left: var(--calendarSidebarWidth);
   background-color: #14282d;
 }
 
 .calendarSidebar {
   position: absolute;
-  top: 0; /* TODO: Set Dynamically */
+  top: 0;
   left: 0;
   right: 0;
   bottom: 17px; /* TODO: Set Dynamically */
   z-index: 500;
   max-height: 100%;
   background-color: #14282d;
-  width: 200px; /* TODO: Set Dynamically */
+  width: var(--calendarSidebarWidth);
   overflow: hidden;
 }
 
 .calendarControls {
-  height: 70px;
+  height: var(--calendarHeaderHeight);
   display: flex;
   align-items: center;
   padding: 15px;
@@ -34,7 +34,7 @@
   font-size: 18px;
   display: flex;
   flex-direction: column;
-  margin-right: 15px;
+  margin-right: auto;
 }
 
 .nextDate {
@@ -57,7 +57,7 @@
 
 .calendarRowHeaders {
   position: absolute;
-  top: 70px;
+  top: var(--calendarHeaderHeight);
   left: 0;
   right: -17px; /* TODO: Set Dynamically */
   bottom: 0;
@@ -69,8 +69,8 @@
 .calendarRowHeader {
   color: white;
   padding: 10px;
-  height: 75px;
-  min-height: 75px; /* Why Are Both Needed For Scroll? */
+  height: var(--calendarRowHeight);
+  min-height: var(--calendarRowHeight); /* Why Are Both Needed For Scroll? */
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -92,18 +92,17 @@
   left: 200px;
   align-items: center;
   z-index: 500;
-  max-width: calc(100% - 200px); /* TODO: Set Dynamically (200px) */
+  max-width: calc(100% - var(--calendarSidebarWidth));
   pointer-events: none;
-  height: 70px; /* TODO: Set Dynamically */
+  height: var(--calendarHeaderHeight);
   width: 100%;
   overflow: hidden;
-  /* box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15); */
   padding-right: 17px; /* TODO: Set Dynamically */
   background-color: whitesmoke;
 }
 
 .hourMarkers {
-  width: 6017px; /* TODO: Set Dynamically (24 * hourSize + scrollBar width)*/
+  width: calc(24 * var(--hourScale) + 17px); /* TODO: Set Dynamically (24 * hourScale + scrollBar width)*/
   overflow-x: scroll;
   overflow-y: hidden;
   position: absolute;
@@ -121,14 +120,16 @@
   font-weight: bold;
   text-transform: uppercase;
   padding-left: 10px;
+  height: 16px;
+  bottom:10px;
 }
 
 .hourMarker:before {
   content: '';
   position: absolute;
-  top: -40px; /* TODO: Set Dynamically */
+  top: -44px; /* TODO: Set Dynamically */
   left: -1px;
-  height: 70px;
+  height: var(--calendarHeaderHeight);
   width: 3px;
   border-left: 2px solid #9ca5a7;
 }
@@ -143,8 +144,8 @@
 
 .calendarRow {
   display:flex;
-  height: 75px;
-  width: 6000px; /* TODO: Set Dynamically */
+  height: var(--calendarRowHeight);
+  width: calc(24 * var(--hourScale)); /* TODO: Set Dynamically */
 }
 
 .calendarRow:hover {

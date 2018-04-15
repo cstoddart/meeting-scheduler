@@ -1,4 +1,10 @@
 .calendar {
+  --calendarRowHeight: 75px;
+  --calendarHeaderHeight: 70px;
+  --calendarSidebarWidth: 200px;
+}
+
+.calendar {
   height: 100%;
   padding-top: 100px; /* TODO: Set Dynamically */
 }
