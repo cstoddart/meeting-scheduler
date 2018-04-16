@@ -5,7 +5,8 @@
   right: 0;
   display: flex;
   align-items: center;
-  height: 100px; /* TODO: Set Dynamically */
+  justify-content: space-between;
+  height: var(--navigationHeight);
   padding: 25px;
   background-color: white;
   box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.2);

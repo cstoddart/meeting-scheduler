@@ -8,7 +8,7 @@ export function signIn() {
         if (isSignedIn) {
           resolve();
         } else {
-          GoogleAuth.signIn({ scope }).then(() => {
+          GoogleAuth.signIn({ scope, ux_mode: 'redirect' }).then(() => {
             resolve();
           });
         }
