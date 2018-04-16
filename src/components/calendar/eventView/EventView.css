@@ -1,0 +1,69 @@
+.eventView {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(32, 51, 56, 0.75);
+  z-index: 1000;
+  padding: 10%;
+}
+
+.eventViewContent {
+  padding: 25px;
+  background-color: white;
+  border: 2px solid #b99141;
+  border-radius: 5px;
+  max-width: 550px;
+  word-break: break-word;
+}
+
+.eventViewTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.eventViewCreator {
+  margin-bottom: 25px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.eventViewTime {
+  display: flex;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.eventViewLocation {
+  margin-bottom: 15px;
+  border-bottom: 2px solid #dcdfe0;
+  padding-bottom: 15px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.eventViewDescription {
+  margin-bottom: 15px;
+}
+
+.eventViewAttendees {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 1.4;
+}
+
+.eventViewAttendees strong {
+  display: block;
+  width: 100%;
+  font-size: 14px;
+}
+
+.eventViewAttendee {
+  margin-right: 10px;
+}

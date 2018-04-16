@@ -52,7 +52,7 @@ class Event extends Component {
         }}
         data-width={this.state.width}
         data-position={this.state.position}
-        onClick={() => this.props.selectEvent(event.id)}
+        onClick={() => this.props.selectEvent(event)}
       >
         <div className="eventContent">
           <p className="eventTitle">{event.summary}</p>
@@ -65,7 +65,6 @@ class Event extends Component {
 
 Event.propTypes = {
   event: PropTypes.shape({
-    summary: PropTypes.string,
     start: PropTypes.shape({
       dateTime: PropTypes.string,
     }),
@@ -73,10 +72,11 @@ Event.propTypes = {
       dateTime: PropTypes.string,
     }),
     creator: PropTypes.shape({
-      displayName: PropTypes.string,
-      email: PropTypes.string,
     }),
+    id: PropTypes.string,
   }),
+  isSelected: PropTypes.bool,
+  selectEvent: PropTypes.func,
 };
 
 export default Event;

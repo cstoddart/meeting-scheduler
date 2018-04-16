@@ -6,6 +6,7 @@ import { hourScale } from '../../../constants';
 import CalendarHeader from '../calendarHeader/CalendarHeader';
 import CalendarSidebar from '../calendarSidebar/CalendarSidebar';
 import CalendarRows from '../calendarRows/CalendarRows';
+import EventView from '../eventView/EventView';
 import './CalendarContent.css';
 
 class CalendarContent extends Component {
@@ -15,20 +16,36 @@ class CalendarContent extends Component {
     this.calendarRows = createRef();
     this.calendarHeader = createRef();
     this.calendarSidebar = createRef();
+    this.eventView = createRef();
 
     this.state = {
-      selectedEvent: '',
+      selectedEvent: undefined,
     };
   }
 
   componentDidMount() {
     const currentHours = new Date().getHours();
     this.calendarRows.current.scrollLeft = ((currentHours - 0.5) * hourScale);
+
+    const scrollBarWidth = this.calendarRows.current.offsetWidth - this.calendarRows.current.clientWidth;
+    this.calendarRows.current.style.setProperty('--scrollBarWidth', `${scrollBarWidth}px`);
+    this.calendarHeader.current.style.setProperty('--scrollBarWidth', `${scrollBarWidth}px`);
+    this.calendarSidebar.current.style.setProperty('--scrollBarWidth', `${scrollBarWidth}px`);
   }
 
   matchScroll() {
     this.calendarHeader.current.scrollLeft = this.calendarRows.current.scrollLeft;
-    this.calendarSidebar.current.scrollTop = this.calendarRows.current.scrollTop;
+    this.calendarSidebar.current.children[1].scrollTop = this.calendarRows.current.scrollTop;
+  }
+
+  resetSelectedEvent(event) {
+    if (event.target !== this.eventView.current) {
+      return;
+    }
+
+    if (this.state.selectedEvent) {
+      this.setState({ selectedEvent: undefined });
+    }
   }
 
   render() {
@@ -47,7 +64,15 @@ class CalendarContent extends Component {
           matchScroll={() => this.matchScroll()}
           setEvent={({ selectedEvent }) => this.setState({ selectedEvent })}
           selectedEvent={this.state.selectedEvents}
+          resetSelectedEvent={this.resetSelectedEvent}
         />
+        {this.state.selectedEvent &&
+          <EventView
+            ref={this.eventView}
+            event={this.state.selectedEvent}
+            resetSelectedEvent={(e) => this.resetSelectedEvent(e)}
+          />
+        }
       </div>
     );
   }

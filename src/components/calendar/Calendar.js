@@ -1,6 +1,7 @@
-import React, { Component, Fragment, createRef } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
+import { subDays, addDays } from 'date-fns';
 
 import { hourScale } from '../../constants';
 import CalendarContent from './calendarContent/CalendarContent';
@@ -24,6 +25,17 @@ class Calendar extends Component {
   async componentDidMount() {
     await this.props.getEvents();
     this.calendar.current.style.setProperty('--hourScale', `${hourScale}px`);
+    document.addEventListener('keyup', (event) => this.calendarShortcuts(event));
+    console.log('CAL', this.calendar);
+    this.calendar.current.focus();
+  }
+
+  calendarShortcuts(event) {
+    if (event.shiftKey && event.key === 'ArrowRight') {
+      this.changeView(addDays(this.state.calendarView, 1));
+    } else if (event.shiftKey && event.key === 'ArrowLeft') {
+      this.changeView(subDays(this.state.calendarView, 1));
+    }
   }
 
   changeView(calendarView) {
@@ -33,14 +45,12 @@ class Calendar extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div className="calendar" ref={this.calendar}>
         {this.props.roomEvents.length ?
-          <div className="calendar" ref={this.calendar}>
-            <CalendarContent roomEvents={this.props.roomEvents} changeView={(calendarView) => this.changeView(calendarView)} calendarView={this.state.calendarView} />
-          </div>
+          <CalendarContent roomEvents={this.props.roomEvents} changeView={(calendarView) => this.changeView(calendarView)} calendarView={this.state.calendarView} />
           : <Loading />
         }
-      </Fragment>
+      </div>
     );
   }
 }

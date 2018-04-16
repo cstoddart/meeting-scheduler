@@ -6,7 +6,7 @@ import { roomsArray } from '../../../constants/rooms';
 import './CalendarSidebar.css';
 
 const CalendarSidebar = forwardRef((props, ref) => (
-  <div className="calendarSidebar">
+  <div className="calendarSidebar" ref={ref}>
     <div className="calendarControls">
       <div className="calendarDate">
         <span>{format(props.calendarView, 'dddd')}</span>
@@ -15,7 +15,7 @@ const CalendarSidebar = forwardRef((props, ref) => (
       <div className="prevDate" onClick={() => props.changeView(subDays(props.calendarView, 1))} />
       <div className="nextDate" onClick={() => props.changeView(addDays(props.calendarView, 1))} />
     </div>
-    <div className="calendarRowHeaders" ref={ref}>
+    <div className="calendarRowHeaders">
       {props.roomEvents.map((r) => {
         const room = roomsArray.find((roomItem) => roomItem.name === r.name);
         return (

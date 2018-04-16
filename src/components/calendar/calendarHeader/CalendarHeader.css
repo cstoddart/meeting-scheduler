@@ -9,19 +9,19 @@
   height: var(--calendarHeaderHeight);
   width: 100%;
   overflow: hidden;
-  padding-right: 17px; /* TODO: Set Dynamically */
+  padding-right: var(--scrollBarWidth);
   background-color: whitesmoke;
 }
 
 .hourMarkers {
-  width: calc(24 * var(--hourScale) + 17px); /* TODO: Set Dynamically (24 * hourScale + scrollBar width)*/
+  width: calc(24 * var(--hourScale) + var(--scrollBarWidth));
   overflow-x: scroll;
   overflow-y: hidden;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: -17px; /* TODO: Set Dynamically */
+  bottom: calc(var(--scrollBarWidth) * -1);
   padding-top: 45px; /* TODO: Set Dynamically */
 }
 
