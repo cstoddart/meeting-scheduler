@@ -7,4 +7,5 @@
 .calendar {
   height: 100%;
   padding-top: 100px; /* TODO: Set Dynamically */
+  position: relative;
 }

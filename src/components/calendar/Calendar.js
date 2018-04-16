@@ -26,7 +26,6 @@ class Calendar extends Component {
     await this.props.getEvents();
     this.calendar.current.style.setProperty('--hourScale', `${hourScale}px`);
     document.addEventListener('keyup', (event) => this.calendarShortcuts(event));
-    console.log('CAL', this.calendar);
     this.calendar.current.focus();
   }
 
@@ -47,7 +46,8 @@ class Calendar extends Component {
     return (
       <div className="calendar" ref={this.calendar}>
         {this.props.roomEvents.length ?
-          <CalendarContent roomEvents={this.props.roomEvents} changeView={(calendarView) => this.changeView(calendarView)} calendarView={this.state.calendarView} />
+          <Loading />
+          // <CalendarContent roomEvents={this.props.roomEvents} changeView={(calendarView) => this.changeView(calendarView)} calendarView={this.state.calendarView} />
           : <Loading />
         }
       </div>
