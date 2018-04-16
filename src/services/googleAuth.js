@@ -1,11 +1,17 @@
 import { scope } from '../constants';
 
-export const isSignedIn = () => (
-  window.gapi.auth2.getAuthInstance()
-    .then((GoogleAuth) => GoogleAuth.isSignedIn.get())
-);
-
 export function signIn() {
-  window.gapi.auth2.getAuthInstance()
-    .then((GoogleAuth) => GoogleAuth.signIn({ scope }));
+  return new Promise((resolve) => {
+    window.gapi.auth2.getAuthInstance()
+      .then((GoogleAuth) => {
+        const isSignedIn = GoogleAuth.isSignedIn.get();
+        if (isSignedIn) {
+          resolve();
+        } else {
+          GoogleAuth.signIn({ scope }).then(() => {
+            resolve();
+          });
+        }
+      });
+  });
 }

@@ -1,6 +1,8 @@
-import { googleApiKey, googleClientId } from '../keys';
-import { scope } from '../constants';
 import Promise from 'bluebird';
+
+import { googleApiKey, googleClientId } from '../keys';
+import { signIn } from './googleAuth';
+import { scope } from '../constants';
 
 export function googleInit() {
   console.log('Initializing gapi...');
@@ -17,7 +19,9 @@ export function googleInit() {
         return window.gapi.auth2.init({
           client_id: googleClientId,
           scope,
-        }).then(resolve); // Google Thenable
+        }).then(() => {
+          return signIn().then(resolve);
+        });
       });
     });
   });
