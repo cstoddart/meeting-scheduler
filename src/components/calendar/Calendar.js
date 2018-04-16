@@ -45,11 +45,8 @@ class Calendar extends Component {
   render() {
     return (
       <div className="calendar" ref={this.calendar}>
-        {this.props.roomEvents.length ?
-          <Loading />
-          // <CalendarContent roomEvents={this.props.roomEvents} changeView={(calendarView) => this.changeView(calendarView)} calendarView={this.state.calendarView} />
-          : <Loading />
-        }
+        <CalendarContent roomEvents={this.props.roomEvents} changeView={(calendarView) => this.changeView(calendarView)} calendarView={this.state.calendarView} />
+        <Loading active={!!this.props.roomEvents.length} />
       </div>
     );
   }

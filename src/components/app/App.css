@@ -13,8 +13,7 @@
 }
 
 #root {
-  height: 100%;
-  position: relative;
+  --navigationHeight: 100px;
 }
 
 #root {

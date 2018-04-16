@@ -14,7 +14,7 @@
 }
 
 .hourMarkers {
-  width: calc(24 * var(--hourScale) + var(--scrollBarWidth));
+  width: calc(24 * var(--hourScale) + var(--scrollBarWidth) + 1px);
   overflow-x: scroll;
   overflow-y: hidden;
   position: absolute;

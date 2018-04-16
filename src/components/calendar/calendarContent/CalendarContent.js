@@ -24,13 +24,16 @@ class CalendarContent extends Component {
   }
 
   componentDidMount() {
-    const currentHours = new Date().getHours();
-    this.calendarRows.current.scrollLeft = ((currentHours - 0.5) * hourScale);
-
     const scrollBarWidth = this.calendarRows.current.offsetWidth - this.calendarRows.current.clientWidth;
     this.calendarRows.current.style.setProperty('--scrollBarWidth', `${scrollBarWidth}px`);
     this.calendarHeader.current.style.setProperty('--scrollBarWidth', `${scrollBarWidth}px`);
     this.calendarSidebar.current.style.setProperty('--scrollBarWidth', `${scrollBarWidth}px`);
+
+    // const currentHours = new Date().getHours();
+    const currentHours = 7;
+    this.calendarRows.current.scrollLeft = ((currentHours - 0.5) * hourScale);
+    this.calendarHeader.current.children[0].scrollLeft = ((currentHours - 0.5) * hourScale);
+    this.calendarHeader.current.scrollLeft = ((currentHours - 0.5) * hourScale);
   }
 
   matchScroll() {
@@ -51,7 +54,7 @@ class CalendarContent extends Component {
   render() {
     return (
       <div className="calendarContent">
-        <CalendarHeader ref={this.calendarHeader} />
+        <CalendarHeader ref={this.calendarHeader} matchScroll={() => this.matchScroll()} />
         <CalendarSidebar
           ref={this.calendarSidebar}
           calendarView={this.props.calendarView}
