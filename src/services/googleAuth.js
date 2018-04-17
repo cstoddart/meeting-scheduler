@@ -1,19 +1,11 @@
 import { scope } from '../constants';
 
-export function getUser() {
-  if (!window.gapi || !window.gapi.auth2) {
-    return false;
-  }
-
+export function googleSignOut() {
   window.gapi.auth2.getAuthInstance()
-    .then((GoogleAuth) => {
-      return GoogleAuth.currentUser.get();
-    });
-
-  return false;
+    .then((GoogleAuth) => GoogleAuth.signOut());
 }
 
-export function signIn() {
+export function googleSignIn() {
   return new Promise((resolve) => {
     window.gapi.auth2.getAuthInstance()
       .then((GoogleAuth) => {

@@ -1,7 +1,7 @@
 import Promise from 'bluebird';
 
 import { googleApiKey, googleClientId } from '../keys';
-import { signIn } from './googleAuth';
+import { googleSignIn } from './googleAuth';
 import { scope } from '../constants';
 
 export function googleInit() {
@@ -20,7 +20,10 @@ export function googleInit() {
           client_id: googleClientId,
           scope,
         }).then(() => {
-          return signIn().then(resolve);
+          return googleSignIn().then(window.gapi.auth2.getAuthInstance()
+            .then((GoogleAuth) => {
+              resolve(GoogleAuth.currentUser.get());
+            }));
         });
       });
     });

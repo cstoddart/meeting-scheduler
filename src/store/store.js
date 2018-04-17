@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx';
 import { getCalendarEvents } from '../services/googleCalendar';
 import { googleInit } from '../services/googleInit';
+import { googleSignOut } from '../services/googleAuth';
 
 class Store {
   @observable roomEvents = [];
@@ -13,9 +14,27 @@ class Store {
   }
 
   @action
-  googleInit = async () => {
-    const user = await googleInit();
+  signIn = async () => {
+    const GoogleUser = await googleInit();
+    console.log('GoogleUser', GoogleUser);
+    const profile = GoogleUser.getBasicProfile();
+    console.log('profile', profile);
+    const user = {
+      name: profile.getName(),
+      firstName: profile.getGivenName(),
+      lastName: profile.getFamilyName(),
+      isSignedIn: GoogleUser.isSignedIn(),
+    };
+
+    console.log('USER', user);
+
     this.user = user;
+  }
+
+  @action
+  signOut = async () => {
+    googleSignOut();
+    this.user = false;
   }
 }
 

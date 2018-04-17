@@ -16,3 +16,28 @@
 .logo {
   max-width: 250px;
 }
+
+.navigationMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.navigationMenu li {
+  list-style-type: none;
+}
+
+.navigationUserName {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  color: #9ca5a7;
+  margin-bottom: 3px;
+}
+
+.navigationSignIn,
+.navigationSignOut {
+  cursor: pointer;
+  font-weight: bold;
+}
