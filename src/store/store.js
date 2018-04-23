@@ -16,9 +16,7 @@ class Store {
   @action
   signIn = async () => {
     const GoogleUser = await googleInit();
-    console.log('GoogleUser', GoogleUser);
     const profile = GoogleUser.getBasicProfile();
-    console.log('profile', profile);
     const user = {
       name: profile.getName(),
       firstName: profile.getGivenName(),
