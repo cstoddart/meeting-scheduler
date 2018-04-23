@@ -51,7 +51,7 @@ class Event extends Component {
         }}
         data-width={this.state.width}
         data-position={this.state.position}
-        onClick={() => this.props.selectEvent(event)}
+        onClick={() => this.props.selectEvent(event.id)}
       >
         <div className="eventContent">
           <p className="eventTitle">{event.summary}</p>

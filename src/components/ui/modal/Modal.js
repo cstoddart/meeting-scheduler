@@ -17,6 +17,7 @@ class Modal extends Component {
   }
 
   render() {
+    console.log('CHILDREN', this.props.children);
     return (
       <div className="modal" ref={this.modal} onClick={(e) => this.closeModal(e)}>
         <div className="modalContent">
@@ -28,7 +29,7 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  children: PropTypes.object.isRequired,
   closeModal: PropTypes.func.isRequired,
 };
 

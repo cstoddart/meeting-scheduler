@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { PropTypes as MobXTypes } from 'mobx-react';
 import { format } from 'date-fns';
 
 import Modal from '../../ui/modal/Modal';
@@ -11,6 +12,7 @@ const createHTML = (htmlString) => ({
 
 const EventView = (props) => (
   <div className="eventView" onClick={(e) => props.hideEventView(e)}>
+    {console.log('EVENT', props.event)}
     <Modal closeModal={() => props.hideEventView()}>
       <div className="eventViewBody">
         <h1 className="eventViewTitle">{props.event.summary}</h1>
@@ -23,7 +25,7 @@ const EventView = (props) => (
           {props.event.attendees.filter((attendee) => (
             !attendee.email.includes('resource.calendar.google.com')
           )).map((attendee) => (
-            <div className="eventViewAttendee">{attendee.email}</div>
+            <div key={`${attendee.email}${props.event.id}`} className="eventViewAttendee">{attendee.email}</div>
           ))}
         </div>
       </div>
@@ -33,20 +35,21 @@ const EventView = (props) => (
 
 EventView.propTypes = {
   event: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     summary: PropTypes.string.isRequired,
     creator: PropTypes.shape({
-      displayName: PropTypes.string.isRequired,
+      displayName: PropTypes.string,
       email: PropTypes.string.isRequired,
     }).isRequired,
     start: PropTypes.shape({
-      dateTime: PropTypes.instanceOf(Date).isRequired,
+      dateTime: PropTypes.string.isRequired,
     }).isRequired,
     end: PropTypes.shape({
-      dateTime: PropTypes.instanceOf(Date).isRequired,
+      dateTime: PropTypes.string.isRequired,
     }).isRequired,
     location: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    attendees: PropTypes.arrayOf({}),
+    attendees: MobXTypes.observableArray,
   }),
   hideEventView: PropTypes.func,
 };

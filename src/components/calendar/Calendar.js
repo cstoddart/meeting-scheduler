@@ -25,7 +25,6 @@ class Calendar extends Component {
     this.calendarRows = createRef();
     this.calendarHeader = createRef();
     this.calendarSidebar = createRef();
-    this.eventView = createRef();
 
     this.state = {
       calendarView: new Date(),
@@ -86,13 +85,11 @@ class Calendar extends Component {
             ref={this.calendarRows}
             roomEvents={this.props.roomEvents}
             matchScroll={() => this.matchScroll()}
-            selectEvent={(eventId) => this.setState({ selectedEvent: eventId, showEventView: true })}
-            hideEventView={this.hideEventView}
+            selectEvent={(event) => this.setState({ selectedEvent: event, showEventView: true })}
             showCreateEvent={(eventHour) => this.setState({ showCreateEvent: true, eventHour })}
           />
           {this.state.showEventView &&
             <EventView
-              ref={this.eventView}
               event={this.state.selectedEvent}
               hideEventView={() => this.setState({ showEventView: false, selectedEvent: '' })}
             />
