@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import Navigation from '../navigation/Navigation';
 import Calendar from '../calendar/Calendar';
-import Login from '../login/Login';
 import '../../utils/reset.css';
 import './App.css';
 
@@ -23,7 +22,6 @@ class App extends Component {
         <Fragment>
           <Navigation />
           <Route exact path="/" component={Calendar} />
-          <Route exact path="/login" component={Login} />
         </Fragment>
       </Router>
     );

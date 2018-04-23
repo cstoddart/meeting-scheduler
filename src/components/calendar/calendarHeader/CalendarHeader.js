@@ -5,7 +5,7 @@ import { hourScale, hours } from '../../../constants';
 import './CalendarHeader.css';
 
 const CalendarHeader = forwardRef((props, ref) => (
-  <div className="calendarHeader" ref={ref} onScroll={props.matchScroll}>
+  <div className="calendarHeader" ref={ref}>
     <div className="hourMarkers">
       {hours.map((hour) => (
         <div className="hourMarker" style={{ left: `${hour * hourScale}px` }} key={`hourMarker${hour}`}>

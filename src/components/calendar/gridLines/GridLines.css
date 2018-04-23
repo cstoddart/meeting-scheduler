@@ -2,6 +2,8 @@
   border-left: 2px solid #9ca5a7;
   height: 825px; /* TODO: Set Dynamically */
   position: absolute;
+  width: calc(var(--hourScale) / 2);
+  pointer-events: none;
 }
 
 .gridLine.halfHour {

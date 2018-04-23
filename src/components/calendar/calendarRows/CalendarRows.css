@@ -10,8 +10,26 @@
   display:flex;
   height: var(--calendarRowHeight);
   width: calc(24 * var(--hourScale));
+  position: relative;
 }
 
 .calendarRow:hover {
   background-color: rgba(20, 40, 45, 0.15);
+}
+
+.calendarRowSections {
+  position: absolute;
+  top: 0;
+  width: var(--hourScale);
+  height: 100%;
+}
+
+.calendarRowSection {
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+}
+
+.calendarRowSection:hover {
+  border: 2px solid grey;
 }

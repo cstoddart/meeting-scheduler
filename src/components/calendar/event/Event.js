@@ -5,8 +5,8 @@ import { hourScale } from '../../../constants';
 import './Event.css';
 
 class Event extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       width: 0,
       position: 0,
@@ -43,11 +43,10 @@ class Event extends Component {
     const { event } = this.props;
     return (
       <div
-        className={`event ${this.props.isSelected === this.props.event.id ? 'selected' : null}`}
+        className="event"
         style={{
           minWidth: `${this.state.width}px`,
           maxWidth: `${this.state.width}px`,
-          // width: `${this.state.width}px`,
           left: `${this.state.position}px`,
         }}
         data-width={this.state.width}
@@ -73,9 +72,7 @@ Event.propTypes = {
     }),
     creator: PropTypes.shape({
     }),
-    id: PropTypes.string,
   }),
-  isSelected: PropTypes.bool,
   selectEvent: PropTypes.func,
 };
 

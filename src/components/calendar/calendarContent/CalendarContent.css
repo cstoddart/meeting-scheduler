@@ -1,8 +1,0 @@
-.calendarContent {
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  padding-top: var(--calendarHeaderHeight);
-  padding-left: var(--calendarSidebarWidth);
-  background-color: #14282d;
-}

@@ -5,7 +5,7 @@ import { roomsArray } from '../constants/rooms';
 
 const listEvents = async (opts = {}) => {
   const { calendarView } = opts;
-  const roomNames = opts.rooms || roomsArray.map((room) => room.name);
+  const roomNames = roomsArray.map((room) => room.name);
   const roomEvents = [];
 
   const start = calendarView ? startOfDay(new Date(calendarView)) : startOfToday();
@@ -61,4 +61,12 @@ export const getCalendarEvents = async (opts) => {
 
   await googleInit();
   return listEvents(opts);
+};
+
+export const addCalendarEvent = (event) => {
+  console.log('ADDING EVENT...');
+  window.gapi.client.calendar.events.insert({
+    calendarId: 'primary',
+    resource: event,
+  }).then((result) => console.log('result', result));
 };

@@ -1,40 +1,54 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
+import Modal from '../../ui/modal/Modal';
 import './EventView.css';
 
 const createHTML = (htmlString) => ({
   __html: htmlString,
 });
 
-const EventView = forwardRef(({ event, resetSelectedEvent }, ref) => (
-  <div className="eventView" ref={ref} onClick={(e) => resetSelectedEvent(e)}>
-    <div className="eventViewContent">
-      {console.log(event)}
+const EventView = (props) => (
+  <div className="eventView" onClick={(e) => props.hideEventView(e)}>
+    <Modal closeModal={() => props.hideEventView()}>
       <div className="eventViewBody">
-        <h1 className="eventViewTitle">{event.summary}</h1>
-        <div className="eventViewCreator">Created by: {event.creator.displayName || event.creator.email}</div>
-        <div className="eventViewTime">{format(event.start.dateTime, 'h:mm A')} - {format(event.end.dateTime, 'h:mm A')}</div>
-        <div className="eventViewLocation">{event.location}</div>
-        <div className="eventViewDescription" dangerouslySetInnerHTML={createHTML(event.description)} />
+        <h1 className="eventViewTitle">{props.event.summary}</h1>
+        <div className="eventViewCreator">Created by: {props.event.creator.displayName || props.event.creator.email}</div>
+        <div className="eventViewTime">{format(props.event.start.dateTime, 'h:mm A')} - {format(props.event.end.dateTime, 'h:mm A')}</div>
+        <div className="eventViewLocation">{props.event.location}</div>
+        <div className="eventViewDescription" dangerouslySetInnerHTML={createHTML(props.event.description)} />
         <div className="eventViewAttendees">
           <strong>Attendees:</strong>
-          {event.attendees.filter((attendee) => (
+          {props.event.attendees.filter((attendee) => (
             !attendee.email.includes('resource.calendar.google.com')
           )).map((attendee) => (
             <div className="eventViewAttendee">{attendee.email}</div>
           ))}
         </div>
       </div>
-    </div>
+    </Modal>
   </div>
-));
+);
 
 EventView.propTypes = {
   event: PropTypes.shape({
+    summary: PropTypes.string.isRequired,
+    creator: PropTypes.shape({
+      displayName: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+    }).isRequired,
+    start: PropTypes.shape({
+      dateTime: PropTypes.instanceOf(Date).isRequired,
+    }).isRequired,
+    end: PropTypes.shape({
+      dateTime: PropTypes.instanceOf(Date).isRequired,
+    }).isRequired,
+    location: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    attendees: PropTypes.arrayOf({}),
   }),
-  resetSelectedEvent: PropTypes.func,
+  hideEventView: PropTypes.func,
 };
 
 export default EventView;

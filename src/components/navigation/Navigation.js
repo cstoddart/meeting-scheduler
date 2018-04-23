@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import PropTypes from 'prop-types';
 
 import Logo from '../../assets/images/logo.png';
 import './Navigation.css';
@@ -26,5 +27,14 @@ class Navigation extends Component {
     );
   }
 }
+
+Navigation.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    isSignedIn: PropTypes.bool.isRequired,
+  }),
+  signOut: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
+};
 
 export default Navigation;
