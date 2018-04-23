@@ -36,6 +36,10 @@
   bottom:10px;
 }
 
+.hourMarker:last-child {
+  padding: 0;
+}
+
 .hourMarker:before {
   content: '';
   position: absolute;

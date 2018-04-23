@@ -6,6 +6,10 @@
   pointer-events: none;
 }
 
+.gridLine:last-child {
+  width: 0;
+}
+
 .gridLine.halfHour {
   border-left: 1px solid lightgrey;
 }

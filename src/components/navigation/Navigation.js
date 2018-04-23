@@ -33,8 +33,8 @@ Navigation.propTypes = {
     name: PropTypes.string.isRequired,
     isSignedIn: PropTypes.bool.isRequired,
   }),
-  signOut: PropTypes.func.isRequired,
-  signIn: PropTypes.func.isRequired,
+  signOut: PropTypes.func,
+  signIn: PropTypes.func,
 };
 
 export default Navigation;

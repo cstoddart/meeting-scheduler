@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
-import { PropTypes as mobxTypes, observer, inject } from 'mobx-react';
+import { PropTypes as MobXTypes, observer, inject } from 'mobx-react';
 import { subDays, addDays } from 'date-fns';
 
 import { hourScale } from '../../constants';
@@ -112,7 +112,7 @@ class Calendar extends Component {
 
 Calendar.propTypes = {
   getEvents: PropTypes.func,
-  roomEvents: mobxTypes.observableArray,
+  roomEvents: MobXTypes.observableArray,
 };
 
 export default Calendar;
