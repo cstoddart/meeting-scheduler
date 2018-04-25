@@ -7,9 +7,9 @@ import { hourScale } from '../../constants';
 import CalendarHeader from './calendarHeader/CalendarHeader';
 import CalendarSidebar from './calendarSidebar/CalendarSidebar';
 import CalendarRows from './calendarRows/CalendarRows';
-import EventView from './eventView/EventView';
+import EventDetails from './eventDetails/EventDetails';
 import CreateEvent from './createEvent/CreateEvent';
-import Loading from '../loading/Loading';
+import Loading from '../ui/loading/Loading';
 import './Calendar.css';
 
 @inject(({ store }) => ({
@@ -29,7 +29,7 @@ class Calendar extends Component {
     this.state = {
       calendarView: new Date(),
       selectedEvent: '',
-      showEventView: false,
+      showEventDetails: false,
       eventHour: '',
       showCreateEvent: false,
     };
@@ -85,13 +85,13 @@ class Calendar extends Component {
             ref={this.calendarRows}
             roomEvents={this.props.roomEvents}
             matchScroll={() => this.matchScroll()}
-            selectEvent={(event) => this.setState({ selectedEvent: event, showEventView: true })}
+            selectEvent={(event) => this.setState({ selectedEvent: event, showEventDetails: true })}
             showCreateEvent={(eventHour) => this.setState({ showCreateEvent: true, eventHour })}
           />
-          {this.state.showEventView &&
-            <EventView
+          {this.state.showEventDetails &&
+            <EventDetails
               event={this.state.selectedEvent}
-              hideEventView={() => this.setState({ showEventView: false, selectedEvent: '' })}
+              hideEventDetails={() => this.setState({ showEventDetails: false, selectedEvent: '' })}
             />
           }
           {this.state.showCreateEvent &&

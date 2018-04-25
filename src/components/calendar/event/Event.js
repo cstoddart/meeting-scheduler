@@ -48,6 +48,7 @@ class Event extends Component {
           minWidth: `${this.state.width}px`,
           maxWidth: `${this.state.width}px`,
           left: `${this.state.position}px`,
+          zIndex: 500 - this.props.index,
         }}
         data-width={this.state.width}
         data-position={this.state.position}
@@ -65,15 +66,18 @@ class Event extends Component {
 Event.propTypes = {
   event: PropTypes.shape({
     start: PropTypes.shape({
-      dateTime: PropTypes.string,
-    }),
+      dateTime: PropTypes.string.isRequired,
+    }).isRequired,
     end: PropTypes.shape({
-      dateTime: PropTypes.string,
-    }),
+      dateTime: PropTypes.string.isRequired,
+    }).isRequired,
     creator: PropTypes.shape({
-    }),
+      displayName: PropTypes.string, // eslint-disable-line
+      email: PropTypes.string.isRequired, // eslint-disable-line
+    }).isRequired,
   }),
-  selectEvent: PropTypes.func,
+  selectEvent: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default Event;

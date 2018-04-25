@@ -1,31 +1,23 @@
-
-.eventViewBody {
-  overflow-y: scroll;
-  overflow-x: hidden;
-  height: 100%;
-  padding: 15px;
-}
-
-.eventViewTitle {
+.eventDetailsTitle {
   font-size: 24px;
   margin-bottom: 10px;
   text-transform: capitalize;
 }
 
-.eventViewCreator {
+.eventDetailsCreator {
   margin-bottom: 25px;
   font-weight: bold;
   font-size: 14px;
 }
 
-.eventViewTime {
+.eventDetailsTime {
   display: flex;
   font-weight: bold;
   margin-bottom: 5px;
   font-size: 16px;
 }
 
-.eventViewLocation {
+.eventDetailsLocation {
   margin-bottom: 15px;
   border-bottom: 2px solid #dcdfe0;
   padding-bottom: 10px;
@@ -33,22 +25,22 @@
   font-size: 16px;
 }
 
-.eventViewDescription {
+.eventDetailsDescription {
   margin-bottom: 15px;
 }
 
-.eventViewAttendees {
+.eventDetailsAttendees {
   display: flex;
   flex-wrap: wrap;
   line-height: 1.4;
 }
 
-.eventViewAttendees strong {
+.eventDetailsAttendees strong {
   display: block;
   width: 100%;
   font-size: 14px;
 }
 
-.eventViewAttendee {
+.eventDetailsAttendee {
   margin-right: 10px;
 }

@@ -1,4 +1,4 @@
-// import blueCouchesImg from '../assets/images/blue-couches.svg';
+import blueCouchesImg from '../assets/images/blue-couches.svg';
 import vinliGarageImg from '../assets/images/vinli-garage.svg';
 import theNautilusImg from '../assets/images/the-nautilus.svg';
 import theFishBowlImg from '../assets/images/the-fish-bowl.svg';
@@ -14,7 +14,7 @@ export const roomsArray = [
   {
     name: 'Blue Couches',
     id: 'dialexa.com_2d36353630343238393639@resource.calendar.google.com',
-    imgUrl: '',
+    imgUrl: blueCouchesImg,
   },
   {
     name: 'Vinli Garage',

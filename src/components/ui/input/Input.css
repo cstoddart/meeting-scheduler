@@ -1,0 +1,36 @@
+.inputContainer {
+  margin-bottom: 25px;
+}
+
+input {
+  background: #dcdfdf;
+  color: #14282d;
+  border: none;
+  padding: 8px 10px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+input[type="submit"] {
+  background-color: #14282d;
+  padding: 10px 12px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color .5s;
+  border-radius: 3px;
+}
+
+input[type="submit"]:hover {
+  background-color: #203338;
+}
+
+textarea {
+  background: #dcdfdf;
+  color: #14282d;
+  border: none;
+  padding: 8px 10px;
+  width: 100%;
+  border-radius: 3px;
+  height: 150px;
+}

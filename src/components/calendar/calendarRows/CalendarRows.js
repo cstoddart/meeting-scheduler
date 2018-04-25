@@ -25,10 +25,11 @@ const CalendarRowSections = (props) => (
 );
 
 const Events = (props) => (
-  props.events.map((event) => (
+  props.events.map((event, i) => (
     <Event
       key={event.id}
       event={event}
+      index={i}
       selectEvent={() => props.selectEvent(event)}
     />
   ))
@@ -51,7 +52,7 @@ const CalendarRows = forwardRef((props, ref) => (
 ));
 
 CalendarRowSections.propTypes = {
-  showCreateEvent: PropTypes.func.isRequired,
+  showCreateEvent: PropTypes.func.isRequired, // eslint-disable-line
 };
 
 Events.propTypes = {

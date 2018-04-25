@@ -9,12 +9,7 @@
 .event:hover {
   background-color: rgba(185, 145, 65, 0.9);
   max-width: 100% !important;
-  z-index: 500;
 }
-/*
-.event.selected {
-  min-width: fit-content !important;
-} */
 
 .eventContent {
   position: relative;

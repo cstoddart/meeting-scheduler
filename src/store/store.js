@@ -24,8 +24,6 @@ class Store {
       isSignedIn: GoogleUser.isSignedIn(),
     };
 
-    console.log('USER', user);
-
     this.user = user;
   }
 

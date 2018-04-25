@@ -12,13 +12,8 @@
 
 .createEventInputGroup {
   display: flex;
-  justify-content: space-between;
 }
 
-.createEventInputGroup .createEventInputContainer {
-  flex-basis: calc((100% / 6) - 10px);
-}
-
-.createEventTimeInput {
-
+.createEventInputGroup .inputContainer + .inputContainer {
+  margin-left: 10px;
 }
