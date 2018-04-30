@@ -1,19 +1,11 @@
-.createEventInputContainer {
-  margin-bottom: 25px;
-}
-
-.createEventInput {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 2px solid #9ca5a7;
-  width: 100%;
-}
-
 .createEventInputGroup {
   display: flex;
 }
 
 .createEventInputGroup .inputContainer + .inputContainer {
   margin-left: 10px;
+}
+
+.createEvent form > .inputContainer:last-child {
+  margin-bottom: 0;
 }

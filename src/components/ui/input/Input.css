@@ -11,6 +11,10 @@ input {
   border-radius: 3px;
 }
 
+input[type="time"] {
+  width: 120px;
+}
+
 input[type="submit"] {
   background-color: #14282d;
   padding: 10px 12px;

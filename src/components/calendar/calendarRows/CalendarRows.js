@@ -41,7 +41,7 @@ const CalendarRows = forwardRef((props, ref) => (
     <div>
       {props.roomEvents.map((room, index) => (
         <div key={`calendarRow${index}`} className="calendarRow">
-          <CalendarRowSections showCreateEvent={() => props.showCreateEvent()} />
+          <CalendarRowSections showCreateEvent={(hour) => props.showCreateEvent(hour)} />
           {room.events.length ?
             <Events events={room.events} selectEvent={(event) => props.selectEvent(event)} /> : null
           }

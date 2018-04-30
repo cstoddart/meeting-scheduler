@@ -45,7 +45,7 @@ EventDetails.propTypes = {
       dateTime: PropTypes.string.isRequired,
     }).isRequired,
     location: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
     attendees: MobXTypes.observableArray,
   }),
   hideEventDetails: PropTypes.func,

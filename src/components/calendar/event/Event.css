@@ -3,7 +3,6 @@
   background-color: #d6b064;
   transition: 0.5s;
   cursor: pointer;
-  z-index: 500;
 }
 
 .event:hover {

@@ -41,7 +41,7 @@ const listEvents = async (opts = {}) => {
 
       return (eventStart > new Date(start).getTime()) &&
       (eventEnd < new Date(end).getTime());
-    });
+    }).sort((a, b) => a.start.dateTime > b.start.dateTime);
   }
 
   roomEvents.sort((a, b) => {

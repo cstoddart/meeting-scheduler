@@ -30,7 +30,7 @@ class Calendar extends Component {
       calendarView: new Date(),
       selectedEvent: '',
       showEventDetails: false,
-      eventHour: '',
+      eventHours: '',
       showCreateEvent: false,
     };
   }
@@ -86,7 +86,7 @@ class Calendar extends Component {
             roomEvents={this.props.roomEvents}
             matchScroll={() => this.matchScroll()}
             selectEvent={(event) => this.setState({ selectedEvent: event, showEventDetails: true })}
-            showCreateEvent={(eventHour) => this.setState({ showCreateEvent: true, eventHour })}
+            showCreateEvent={(eventHours) => this.setState({ showCreateEvent: true, eventHours })}
           />
           {this.state.showEventDetails &&
             <EventDetails
@@ -96,8 +96,9 @@ class Calendar extends Component {
           }
           {this.state.showCreateEvent &&
             <CreateEvent
-              eventHour={this.state.eventHour}
-              hideCreateEvent={() => this.setState({ showCreateEvent: false, eventHour: '' })}
+              eventDate={this.state.calendarView}
+              eventHours={this.state.eventHours}
+              hideCreateEvent={() => this.setState({ showCreateEvent: false, eventHours: '' })}
             />
           }
         </div>
