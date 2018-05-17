@@ -2,21 +2,21 @@ import React, { Fragment, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { PropTypes as MobXTypes } from 'mobx-react';
 
-import { hours, hourScale } from '../../../constants';
+import { HOURS, HOUR_SCALE } from '../../../constants';
 import GridLines from '../gridLines/GridLines';
 import Event from '../event/Event';
 import './CalendarRows.css';
 
 const CalendarRowSections = (props) => (
   <Fragment>
-    {hours.map((hour, i) => (
+    {HOURS.map((hour, i) => (
       <Fragment key={`calendarRowSections${i}`}>
-        {hour !== hours.length - 1 &&
-          <div className="calendarRowSections" style={{ left: `${hour * hourScale}px` }}>
-            <div className="calendarRowSection" onClick={() => props.showCreateEvent(hour)} />
-            <div className="calendarRowSection" onClick={() => props.showCreateEvent(hour + 0.25)} />
-            <div className="calendarRowSection" onClick={() => props.showCreateEvent(hour + 0.5)} />
-            <div className="calendarRowSection" onClick={() => props.showCreateEvent(hour + 0.75)} />
+        {hour !== HOURS.length - 1 &&
+          <div className="calendarRowSections" style={{ left: `${hour * HOUR_SCALE}px` }}>
+            <div className="calendarRowSection" onClick={() => props.showCreateEvent(hour, props.room)} />
+            <div className="calendarRowSection" onClick={() => props.showCreateEvent(hour + 0.25, props.room)} />
+            <div className="calendarRowSection" onClick={() => props.showCreateEvent(hour + 0.5, props.room)} />
+            <div className="calendarRowSection" onClick={() => props.showCreateEvent(hour + 0.75, props.room)} />
           </div>
         }
       </Fragment>
@@ -41,7 +41,7 @@ const CalendarRows = forwardRef((props, ref) => (
     <div>
       {props.roomEvents.map((room, index) => (
         <div key={`calendarRow${index}`} className="calendarRow">
-          <CalendarRowSections showCreateEvent={(hour) => props.showCreateEvent(hour)} />
+          <CalendarRowSections showCreateEvent={props.showCreateEvent} room={room.name} />
           {room.events.length ?
             <Events events={room.events} selectEvent={(event) => props.selectEvent(event)} /> : null
           }

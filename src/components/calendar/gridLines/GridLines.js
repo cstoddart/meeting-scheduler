@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react';
 
-import { hourScale, hours } from '../../../constants';
+import { HOUR_SCALE, HOURS } from '../../../constants';
 import './GridLines.css';
 
 const GridLines = () => (
   <div className="gridLines">
-    {hours.map((hour) => (
+    {HOURS.map((hour) => (
       <Fragment key={`gridLine${hour}`}>
-        <div className="gridLine" style={{ left: `${(hour * hourScale) - 1}px` }} />
-        {hour !== hours.length - 1 &&
-          <div className="gridLine halfHour" style={{ left: `${(hour * hourScale) + (hourScale / 2)}px` }} />
+        <div className="gridLine" style={{ left: `${(hour * HOUR_SCALE) - 1}px` }} />
+        {hour !== HOURS.length - 1 &&
+          <div className="gridLine halfHour" style={{ left: `${(hour * HOUR_SCALE) + (HOUR_SCALE / 2)}px` }} />
         }
       </Fragment>
     ))}

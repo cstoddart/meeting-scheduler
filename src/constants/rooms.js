@@ -10,7 +10,7 @@ import theDiamondMineImg from '../assets/images/the-diamond-mine.svg';
 import theCageImg from '../assets/images/the-cage.svg';
 import theWarRoomImg from '../assets/images/the-war-room.svg';
 
-export const roomsArray = [
+export const ROOMS = [
   {
     name: 'Blue Couches',
     id: 'dialexa.com_2d36353630343238393639@resource.calendar.google.com',

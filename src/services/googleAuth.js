@@ -1,4 +1,4 @@
-import { scope } from '../constants';
+import { SCOPE } from '../constants';
 
 export function googleSignOut() {
   window.gapi.auth2.getAuthInstance()
@@ -13,7 +13,7 @@ export function googleSignIn() {
         if (isSignedIn) {
           resolve();
         } else {
-          GoogleAuth.signIn({ scope, ux_mode: 'redirect' }).then(() => {
+          GoogleAuth.signIn({ SCOPE, ux_mode: 'redirect' }).then(() => {
             resolve();
           });
         }

@@ -2,7 +2,7 @@ import Promise from 'bluebird';
 
 import { googleApiKey, googleClientId } from '../keys';
 import { googleSignIn } from './googleAuth';
-import { scope } from '../constants';
+import { SCOPE } from '../constants';
 
 export function googleInit() {
   console.log('Initializing gapi...');
@@ -14,11 +14,11 @@ export function googleInit() {
           'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
         ],
         clientId: googleClientId,
-        scope,
+        SCOPE,
       }).then(() => {
         return window.gapi.auth2.init({
           client_id: googleClientId,
-          scope,
+          SCOPE,
         }).then(() => {
           return googleSignIn().then(window.gapi.auth2.getAuthInstance()
             .then((GoogleAuth) => {

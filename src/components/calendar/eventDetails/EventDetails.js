@@ -20,7 +20,7 @@ const EventDetails = (props) => (
       <div className="eventDetailsDescription" dangerouslySetInnerHTML={createHTML(props.event.description)} />
       <div className="eventDetailsAttendees">
         <strong>Attendees:</strong>
-        {props.event.attendees.filter((attendee) => (
+        {props.event.attendees && props.event.attendees.filter((attendee) => (
           !attendee.email.includes('resource.calendar.google.com')
         )).map((attendee) => (
           <div key={`${attendee.email}${props.event.id}`} className="eventDetailsAttendee">{attendee.email}</div>
@@ -44,7 +44,7 @@ EventDetails.propTypes = {
     end: PropTypes.shape({
       dateTime: PropTypes.string.isRequired,
     }).isRequired,
-    location: PropTypes.string.isRequired,
+    location: PropTypes.string,
     description: PropTypes.string,
     attendees: MobXTypes.observableArray,
   }),

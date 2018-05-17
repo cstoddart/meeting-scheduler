@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { PropTypes as MobXTypes, observer, inject } from 'mobx-react';
 import { subDays, addDays } from 'date-fns';
 
-import { hourScale } from '../../constants';
+import { HOUR_SCALE } from '../../constants';
 import CalendarHeader from './calendarHeader/CalendarHeader';
 import CalendarSidebar from './calendarSidebar/CalendarSidebar';
 import CalendarRows from './calendarRows/CalendarRows';
@@ -13,6 +13,7 @@ import Loading from '../ui/loading/Loading';
 import './Calendar.css';
 
 @inject(({ store }) => ({
+  user: store.user,
   getEvents: store.getEvents,
   roomEvents: store.roomEvents,
 }))
@@ -29,6 +30,7 @@ class Calendar extends Component {
     this.state = {
       calendarView: new Date(),
       selectedEvent: '',
+      selectedRoom: '',
       showEventDetails: false,
       eventHours: '',
       showCreateEvent: false,
@@ -37,7 +39,7 @@ class Calendar extends Component {
 
   async componentDidMount() {
     await this.props.getEvents();
-    this.calendar.current.style.setProperty('--hourScale', `${hourScale}px`);
+    this.calendar.current.style.setProperty('--hourScale', `${HOUR_SCALE}px`);
     document.addEventListener('keyup', (event) => this.calendarShortcuts(event));
     this.calendar.current.focus();
 
@@ -47,9 +49,9 @@ class Calendar extends Component {
     this.calendarSidebar.current.style.setProperty('--scrollBarWidth', `${scrollBarWidth}px`);
 
     const currentHours = new Date().getHours();
-    this.calendarRows.current.scrollLeft = ((currentHours - 0.5) * hourScale);
-    this.calendarHeader.current.children[0].scrollLeft = ((currentHours - 0.5) * hourScale);
-    this.calendarHeader.current.scrollLeft = ((currentHours - 0.5) * hourScale);
+    this.calendarRows.current.scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
+    this.calendarHeader.current.children[0].scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
+    this.calendarHeader.current.scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
   }
 
   calendarShortcuts(event) {
@@ -86,7 +88,7 @@ class Calendar extends Component {
             roomEvents={this.props.roomEvents}
             matchScroll={() => this.matchScroll()}
             selectEvent={(event) => this.setState({ selectedEvent: event, showEventDetails: true })}
-            showCreateEvent={(eventHours) => this.setState({ showCreateEvent: true, eventHours })}
+            showCreateEvent={(eventHours, room) => this.setState({ showCreateEvent: true, eventHours, selectedRoom: room })}
           />
           {this.state.showEventDetails &&
             <EventDetails
@@ -96,6 +98,8 @@ class Calendar extends Component {
           }
           {this.state.showCreateEvent &&
             <CreateEvent
+              user={this.props.user}
+              room={this.state.selectedRoom}
               eventDate={this.state.calendarView}
               eventHours={this.state.eventHours}
               hideCreateEvent={() => this.setState({ showCreateEvent: false, eventHours: '' })}
