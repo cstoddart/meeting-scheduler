@@ -2,14 +2,52 @@
   margin-bottom: 25px;
 }
 
+.inputLabel {
+  padding-bottom: 5px;
+}
+
+.inputTooltip {
+  font-size: 13px;
+  margin-left: 5px;
+  position: relative;
+  line-height: 1;
+}
+
+.inputTooltip:after {
+  padding: 5px;
+  margin-left: 5px;
+  opacity: 0;
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -10px;
+  left: 100%;
+  width: max-content;
+  transition: .5s;
+  display: flex;
+  align-items: center;
+  border: 1px solid #dcdfdf;
+  border-radius: 3px;
+}
+
+.inputTooltip:hover:after {
+  opacity: 1;
+}
+
+.inputTooltipIcon {
+  width: 15px;
+}
+
 input,
-select {
-  background: #dcdfdf;
+select,
+div.react-select__control {
+  background-color: #dcdfdf;
   color: #14282d;
   border: none;
   padding: 8px 10px;
   width: 100%;
   border-radius: 3px;
+  font-family: 'lato', sans-serif;
+  font-size: 14px;
 }
 
 input[type="time"] {
@@ -46,4 +84,16 @@ textarea {
 
 .dropdown.active li {
   display: block;
+}
+
+div.react-select__value-container {
+  padding: 0;
+}
+
+div.react-select__indicators {
+  display: none;
+}
+
+div.react-select__placeholder {
+  color: #14282d;
 }

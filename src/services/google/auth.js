@@ -1,4 +1,4 @@
-import { SCOPE } from '../constants';
+import { SCOPE } from '../../constants';
 
 export function googleSignOut() {
   window.gapi.auth2.getAuthInstance()

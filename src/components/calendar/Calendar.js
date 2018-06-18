@@ -14,6 +14,8 @@ import './Calendar.css';
 
 @inject(({ store }) => ({
   user: store.user,
+  emails: store.emails,
+  getEmails: store.getEmails,
   getEvents: store.getEvents,
   roomEvents: store.roomEvents,
 }))
@@ -99,6 +101,7 @@ class Calendar extends Component {
           {this.state.showCreateEvent &&
             <CreateEvent
               user={this.props.user}
+              emails={this.props.emails}
               room={this.state.selectedRoom}
               eventDate={this.state.calendarView}
               eventHours={this.state.eventHours}
@@ -113,8 +116,10 @@ class Calendar extends Component {
 }
 
 Calendar.propTypes = {
-  getEvents: PropTypes.func,
+  user: MobXTypes.observableObject,
+  emails: PropTypes.arrayOf(PropTypes.string),
   roomEvents: MobXTypes.observableArray,
+  getEvents: PropTypes.func,
 };
 
 export default Calendar;

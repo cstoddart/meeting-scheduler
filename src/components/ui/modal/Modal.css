@@ -41,7 +41,7 @@
 }
 
 .modalBody {
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   padding: 15px;
   height: 100%;

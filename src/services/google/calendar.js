@@ -1,8 +1,8 @@
 import { startOfDay, endOfDay, startOfToday, endOfToday } from 'date-fns';
 
-import { alphabetize } from '../helpers';
-import { googleInit } from './googleInit';
-import { ROOMS } from '../constants/rooms';
+import { alphabetize } from '../../helpers';
+import { googleInit } from './init';
+import { ROOMS } from '../../constants';
 
 const listEvents = async (opts = {}) => {
   const { calendarView } = opts;
@@ -33,6 +33,8 @@ const listEvents = async (opts = {}) => {
 
       if (eventIds.includes(event.etag)) return false;
       eventIds.push(event.etag);
+
+      if (!event.location.includes(room.name)) return false;
 
       const eventStart = new Date(event.start.dateTime).getTime();
       const eventEnd = new Date(event.end.dateTime).getTime();

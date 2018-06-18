@@ -2,10 +2,10 @@ import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { parse, format, addMinutes, setMinutes, setHours } from 'date-fns';
 
-import { ROOMS } from '../../../constants/rooms';
+import { ROOMS, EMAILS } from '../../../constants';
 import Input from '../../ui/input/Input';
 import Modal from '../../ui/modal/Modal';
-import { addCalendarEvent } from '../../../services/googleCalendar';
+import { addCalendarEvent } from '../../../services/google/calendar';
 import './CreateEvent.css';
 
 class CreateEvent extends Component {
@@ -40,15 +40,18 @@ class CreateEvent extends Component {
     };
   }
 
-  handleChange(e) {
+  handleChange(e, type = undefined) {
+    console.log('E', e);
     const name = e.target.name;
     const value = e.target.value;
+
     this.setState({
       [name]: value,
     });
   }
 
   handleSubmit(e) {
+    console.log('EVENT', this.state);
     e.preventDefault();
     const event = this.state;
 
@@ -66,21 +69,14 @@ class CreateEvent extends Component {
     end = setMinutes(end, endMinutes);
     event.end = end;
 
-    if (this.state.attendees) {
-      const attendees = this.state.attendees.replace(/ /g, '').split(',');
-      event.attendees = attendees.map((attendee) => ({
-        email: attendee,
-      }));
-    }
-
-    addCalendarEvent(event);
+    // addCalendarEvent(event);
   }
 
   render() {
     return (
       <div className="createEvent" ref={this.createEvent}>
         <Modal closeModal={() => this.props.hideCreateEvent()}>
-          <h1>Create Event</h1>
+          <h1 className="createEventTitle">Create Event</h1>
           <form onSubmit={(e) => this.handleSubmit(e)}>
             <Input label="Title" name="title" type="text" value={this.state.title} handleChange={(e) => this.handleChange(e)} />
             <Input label="Room" name="room" type="dropdown" value={ROOMS.map((room) => room.name)} defaultValue={this.state.room} handleChange={(e) => this.handleChange(e)} />
@@ -92,7 +88,7 @@ class CreateEvent extends Component {
               <Input label="End Date" name="endDate" type="date" value={this.state.endDate} handleChange={(e) => this.handleChange(e)} />
               <Input label="End Time" name="endTime" type="time" value={this.state.endTime} handleChange={(e) => this.handleChange(e)} />
             </div>
-            <Input label="Attendees" name="attendees" type="text" value={this.state.attendees} handleChange={(e) => this.handleChange(e)} />
+            <Input label="Attendees" name="attendees" type="select" value={this.state.attendees} handleChange={(e, type) => this.handleChange(e, type)} options={EMAILS} />
             <Input label="Description" name="description" type="textArea" value={this.state.description} handleChange={(e) => this.handleChange(e)} />
             <input type="submit" value="Submit" />
           </form>

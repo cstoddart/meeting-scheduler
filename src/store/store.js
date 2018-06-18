@@ -1,7 +1,8 @@
 import { observable, action } from 'mobx';
-import { getCalendarEvents } from '../services/googleCalendar';
-import { googleInit } from '../services/googleInit';
-import { googleSignOut } from '../services/googleAuth';
+
+import { googleInit } from '../services/google/init';
+import { getCalendarEvents } from '../services/google/calendar';
+import { googleSignOut } from '../services/google/auth';
 
 class Store {
   @observable roomEvents = [];
@@ -28,7 +29,7 @@ class Store {
   }
 
   @action
-  signOut = async () => {
+  signOut = () => {
     googleSignOut();
     this.user = false;
   }
