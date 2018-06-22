@@ -41,7 +41,6 @@ class CreateEvent extends Component {
   }
 
   handleChange(e, type = undefined) {
-    console.log('E', e);
     const name = e.target.name;
     const value = e.target.value;
 
@@ -69,7 +68,7 @@ class CreateEvent extends Component {
     end = setMinutes(end, endMinutes);
     event.end = end;
 
-    // addCalendarEvent(event);
+    addCalendarEvent(event);
   }
 
   render() {

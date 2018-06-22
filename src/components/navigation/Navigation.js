@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import PropTypes from 'prop-types';
 
-import Logo from '../../assets/images/logo.png';
+import Logo from '../../assets/images/logo.svg';
 import './Navigation.css';
 
 @inject(({ store }) => ({

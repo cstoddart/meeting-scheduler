@@ -34,13 +34,9 @@ const listEvents = async (opts = {}) => {
       if (eventIds.includes(event.etag)) return false;
       eventIds.push(event.etag);
 
-      if (!event.location.includes(room.name)) return false;
+      if (!event.location || !event.location.includes(room.name)) return false;
 
-      const eventStart = new Date(event.start.dateTime).getTime();
-      const eventEnd = new Date(event.end.dateTime).getTime();
-
-      return (eventStart > new Date(start).getTime()) &&
-      (eventEnd < new Date(end).getTime());
+      return true;
     }).sort((a, b) => a.start.dateTime > b.start.dateTime);
   }
 
@@ -59,10 +55,9 @@ export const getCalendarEvents = async (opts) => {
 };
 
 export const addCalendarEvent = (event) => {
-  console.log('ADDING EVENT', event);
+  const room = ROOMS.find((r) => r.name === event.room).id;
   window.gapi.client.calendar.events.insert({
-    calendarId: 'chris.stoddart@dialexa.com',
-    // resource: event,
+    calendarId: 'primary',
     sendNotifications: true,
     summary: event.title,
     start: {
@@ -73,6 +68,6 @@ export const addCalendarEvent = (event) => {
     },
     description: event.description,
     creator: event.user,
-    attendees: event.attendees,
+    attendees: [...event.attendees, room].map((email) => ({ email })),
   }).then((result) => console.log('result', result));
 };

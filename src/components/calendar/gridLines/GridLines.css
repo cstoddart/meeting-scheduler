@@ -1,6 +1,7 @@
 .gridLine {
   border-left: 2px solid #9ca5a7;
   height: 825px; /* TODO: Set Dynamically */
+  min-height: 100%;
   position: absolute;
   width: calc(var(--hourScale) / 2);
   pointer-events: none;
