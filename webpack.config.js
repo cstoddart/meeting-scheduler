@@ -56,10 +56,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'docs'),
     publicPath: '/',
-    filename: 'bundle.[chunkfhash].js',
+    filename: 'bundle.[chunkhash].js',
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: './docs',
     historyApiFallback: true,
   },
   node: {
