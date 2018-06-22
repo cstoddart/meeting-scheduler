@@ -36,7 +36,11 @@ const listEvents = async (opts = {}) => {
 
       if (!event.location || !event.location.includes(room.name)) return false;
 
-      return true;
+      const eventStart = new Date(event.start.dateTime).getTime();
+      const eventEnd = new Date(event.end.dateTime).getTime();
+
+      return (eventStart > new Date(start).getTime()) &&
+      (eventEnd < new Date(end).getTime());
     }).sort((a, b) => a.start.dateTime > b.start.dateTime);
   }
 

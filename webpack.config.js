@@ -54,9 +54,9 @@ module.exports = {
     }),
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'docs'),
     publicPath: '/',
-    filename: 'bundle.[hash].js',
+    filename: 'bundle.[chunkfhash].js',
   },
   devServer: {
     contentBase: './dist',
