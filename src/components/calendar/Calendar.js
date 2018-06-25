@@ -36,6 +36,7 @@ class Calendar extends Component {
       showEventDetails: false,
       eventHours: '',
       showCreateEvent: false,
+      loading: false,
     };
   }
 
@@ -64,9 +65,10 @@ class Calendar extends Component {
     }
   }
 
-  changeView(calendarView) {
-    this.setState({ calendarView });
-    this.props.getEvents({ calendarView });
+  async changeView(calendarView) {
+    this.setState({ calendarView, loading: true });
+    await this.props.getEvents({ calendarView });
+    this.setState({ loading: false });
   }
 
   matchScroll() {
@@ -109,7 +111,7 @@ class Calendar extends Component {
             />
           }
         </div>
-        <Loading active={!!this.props.roomEvents.length} />
+        <Loading active={!this.props.roomEvents.length || this.state.loading} />
       </div>
     );
   }

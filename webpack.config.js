@@ -54,12 +54,12 @@ module.exports = {
     }),
   ],
   output: {
-    path: path.resolve(__dirname, 'docs'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'bundle.[chunkhash].js',
+    filename: 'bundle.[hash].js',
   },
   devServer: {
-    contentBase: './docs',
+    contentBase: './dist',
     historyApiFallback: true,
   },
   node: {

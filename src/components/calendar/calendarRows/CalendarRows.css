@@ -25,11 +25,28 @@
 }
 
 .calendarRowSection {
-  display: inline-block;
+  display: inline-flex;
   width: 25%;
   height: 100%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.calendarRowSection:after {
+  content: '';
+  height: 35px;
+  width: 35px;
+  background-image: url('../../../assets/images/plus.svg');
+  background-size: contain;
+  opacity: 0;
+  transition: .2s;
 }
 
 .calendarRowSection:hover {
-  border: 2px solid grey;
+  border: 2px solid #d3d3d3;
+}
+
+.calendarRowSection:hover:after {
+  opacity: 1;
 }
