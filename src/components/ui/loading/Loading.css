@@ -46,11 +46,13 @@
   background-color: rgba(32, 51, 56, 0.75);
   opacity: 0;
   transition: opacity .5s;
+  pointer-events: none;
 }
 
 .loading.active {
   opacity: 1;
   z-index: 600;
+  pointer-events: all;
 }
 
 .loadingContent {
