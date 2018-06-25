@@ -38,6 +38,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --mode development --port 3000",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "yarn build && firebase deploy"
   }
 }
