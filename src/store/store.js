@@ -32,6 +32,7 @@ class Store {
   signOut = () => {
     googleSignOut();
     this.user = false;
+    window.location.reload();
   }
 }
 
