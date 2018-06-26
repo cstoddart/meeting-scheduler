@@ -1,4 +1,5 @@
-export const EMAILS = ['abhijit.thakker@dialexa.com',
+export const EMAILS = [
+  'abhijit.thakker@dialexa.com',
   'adam@dialexa.com',
   'adam.moore@dialexa.com',
   'adam.oberley@dialexa.com',
