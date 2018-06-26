@@ -73,7 +73,7 @@ class Calendar extends Component {
 
   matchScroll() {
     this.calendarHeader.current.scrollLeft = this.calendarRows.current.scrollLeft;
-    this.calendarSidebar.current.children[1].scrollTop = this.calendarRows.current.scrollTop;
+    this.calendarSidebar.current.children[1].scrollTop = this.calendarRows.current.scrollTop; // targets sidebar items (skips date controls)
   }
 
   render() {

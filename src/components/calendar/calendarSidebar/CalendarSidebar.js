@@ -12,8 +12,8 @@ const CalendarSidebar = forwardRef((props, ref) => (
         <span>{format(props.calendarView, 'dddd')}</span>
         <span>{format(props.calendarView, 'MMM D')}</span>
       </div>
-      <div className="prevDate" onClick={() => props.changeView(subDays(props.calendarView, 1))} />
-      <div className="nextDate" onClick={() => props.changeView(addDays(props.calendarView, 1))} />
+      <div className="prevDate" title="Shift + Left" onClick={() => props.changeView(subDays(props.calendarView, 1))} />
+      <div className="nextDate" title="Shift + Right" onClick={() => props.changeView(addDays(props.calendarView, 1))} />
     </div>
     <div className="calendarRowHeaders">
       {props.roomEvents.map((r) => {

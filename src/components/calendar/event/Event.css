@@ -8,6 +8,7 @@
 .event:hover {
   background-color: rgba(185, 145, 65, 0.9);
   max-width: 100% !important;
+  z-index: 99999 !important;
 }
 
 .eventContent {

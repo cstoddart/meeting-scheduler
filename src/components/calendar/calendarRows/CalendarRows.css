@@ -40,7 +40,7 @@
   background-image: url('../../../assets/images/plus.svg');
   background-size: contain;
   opacity: 0;
-  transition: .2s;
+  transition: .5s;
 }
 
 .calendarRowSection:hover {
