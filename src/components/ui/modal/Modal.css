@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(32, 51, 56, 0.75);
-  z-index: 1000;
+  z-index: 10000;
   padding: 10%;
 }
 
