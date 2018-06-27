@@ -5,6 +5,7 @@
   position: absolute;
   width: calc(var(--hourScale) / 2);
   pointer-events: none;
+  z-index: 10; /* horizontal guide lines are border-top on each calendarRow - this z-index puts the vertical lines on top */
 }
 
 .gridLine:last-child {

@@ -48,7 +48,7 @@ class Event extends Component {
           minWidth: `${this.state.width}px`,
           maxWidth: `${this.state.width}px`,
           left: `${this.state.position}px`,
-          zIndex: 500 - this.props.index,
+          zIndex: 500 - this.props.index, // z-index decreases from left to right
         }}
         data-width={this.state.width}
         data-position={this.state.position}
