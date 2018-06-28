@@ -8,6 +8,12 @@
   z-index: 10; /* horizontal guide lines are border-top on each calendarRow - this z-index puts the vertical lines on top */
 }
 
+.gridLine.currentTime {
+  border-color: #14282d;
+  border-width: 4px;
+  z-index: 100;
+}
+
 .gridLine:last-child {
   width: 0;
 }

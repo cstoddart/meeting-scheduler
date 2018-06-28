@@ -89,10 +89,7 @@ class Calendar extends Component {
 
   toggleMouseOnHeader = (bool) => this.setState({ mouseOnHeader: bool });
 
-  setHoveredRow = (rowName) => {
-    console.log('SETTING HOVERED ROW...');
-    this.setState({ hoveredRow: rowName });
-  }
+  setHoveredRow = (rowName) => this.setState({ hoveredRow: rowName });
 
   render() {
     return (
