@@ -55,7 +55,7 @@
   bottom: 0;
   overflow-y: scroll;
   overflow-x: hidden;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .calendarRowHeader {

@@ -12,6 +12,19 @@
   padding: 10%;
 }
 
+.modal:after {
+  content: '';
+  background-image: url('../../../assets/images/x.svg');
+  width: 25px;
+  height: 25px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  pointer-events: none;
+}
+
 .modalContent {
   padding: 25px;
   background-color: white;
@@ -24,21 +37,6 @@
   position: relative;
 }
 
-.modalContent:after {
-  content: '';
-  background-image: url('../../../assets/images/x.svg');
-  width: 25px;
-  height: 25px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: absolute;
-  left: 100%;
-  bottom: 100%;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  pointer-events: none;
-  cursor: pointer;
-}
 
 .modalBody {
   overflow-y: auto;

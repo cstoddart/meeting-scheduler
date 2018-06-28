@@ -37,6 +37,8 @@ class Calendar extends Component {
       eventHours: '',
       showCreateEvent: false,
       loading: false,
+      mouseOnSidebar: false,
+      mouseOnHeader: false,
     };
   }
 
@@ -71,26 +73,50 @@ class Calendar extends Component {
     this.setState({ loading: false });
   }
 
-  matchScroll() {
-    this.calendarHeader.current.scrollLeft = this.calendarRows.current.scrollLeft;
-    this.calendarSidebar.current.children[1].scrollTop = this.calendarRows.current.scrollTop; // targets sidebar items (skips date controls)
+  matchScroll = () => {
+    if (this.state.mouseOnSidebar) { // Scroll source: calendarSidebar
+      this.calendarRows.current.scrollTop = this.calendarSidebar.current.children[1].scrollTop; // targets .calendarRowHeaders
+    } else if (this.state.mouseOnHeader) { // Scroll source: calendarHeader
+      this.calendarRows.current.scrollLeft = this.calendarHeader.current.children[0].scrollLeft; // targets .calendarHeaderContent
+    } else { // Scroll source: calendarRows
+      this.calendarHeader.current.children[0].scrollLeft = this.calendarRows.current.scrollLeft;
+      this.calendarSidebar.current.children[1].scrollTop = this.calendarRows.current.scrollTop;
+    }
+  }
+
+  toggleMouseOnSidebar(bool) {
+    this.setState({
+      mouseOnSidebar: bool,
+    });
+  }
+
+  toggleMouseOnHeader(bool) {
+    this.setState({
+      mouseOnHeader: bool,
+    });
   }
 
   render() {
     return (
       <div className="calendar" ref={this.calendar}>
         <div className="calendarContent" >
-          <CalendarHeader ref={this.calendarHeader} />
+          <CalendarHeader
+            ref={this.calendarHeader}
+            matchScroll={this.matchScroll}
+            toggleMouseOnHeader={(bool) => this.toggleMouseOnHeader(bool)}
+          />
           <CalendarSidebar
             ref={this.calendarSidebar}
             calendarView={this.state.calendarView}
             changeView={(calendarView) => this.changeView(calendarView)}
             roomEvents={this.props.roomEvents}
+            matchScroll={this.matchScroll}
+            toggleMouseOnSidebar={(bool) => this.toggleMouseOnSidebar(bool)}
           />
           <CalendarRows
             ref={this.calendarRows}
             roomEvents={this.props.roomEvents}
-            matchScroll={() => this.matchScroll()}
+            matchScroll={this.matchScroll}
             selectEvent={(event) => this.setState({ selectedEvent: event, showEventDetails: true })}
             showCreateEvent={(eventHours, room) => this.setState({ showCreateEvent: true, eventHours, selectedRoom: room })}
           />

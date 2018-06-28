@@ -15,7 +15,7 @@ const CalendarSidebar = forwardRef((props, ref) => (
       <div className="prevDate" title="Shift + Left" onClick={() => props.changeView(subDays(props.calendarView, 1))} />
       <div className="nextDate" title="Shift + Right" onClick={() => props.changeView(addDays(props.calendarView, 1))} />
     </div>
-    <div className="calendarRowHeaders">
+    <div className="calendarRowHeaders" onScroll={props.matchScroll} onMouseEnter={() => props.toggleMouseOnSidebar(true)} onMouseLeave={() => props.toggleMouseOnSidebar(false)}>
       {props.roomEvents.map((r) => {
         const room = ROOMS.find((roomItem) => roomItem.name === r.name);
         return (
