@@ -39,6 +39,7 @@ class Calendar extends Component {
       loading: false,
       mouseOnSidebar: false,
       mouseOnHeader: false,
+      hoveredRow: '',
     };
   }
 
@@ -59,6 +60,12 @@ class Calendar extends Component {
     this.calendarHeader.current.scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
   }
 
+  async changeView(calendarView) {
+    this.setState({ calendarView, loading: true });
+    await this.props.getEvents({ calendarView });
+    this.setState({ loading: false });
+  }
+
   calendarShortcuts(event) {
     if (event.shiftKey && event.key === 'ArrowRight') {
       this.changeView(addDays(this.state.calendarView, 1));
@@ -67,15 +74,9 @@ class Calendar extends Component {
     }
   }
 
-  async changeView(calendarView) {
-    this.setState({ calendarView, loading: true });
-    await this.props.getEvents({ calendarView });
-    this.setState({ loading: false });
-  }
-
   matchScroll = () => {
     if (this.state.mouseOnSidebar) { // Scroll source: calendarSidebar
-      this.calendarRows.current.scrollTop = this.calendarSidebar.current.children[1].scrollTop; // targets .calendarRowHeaders
+      this.calendarRows.current.scrollTop = this.calendarSidebar.current.children[1].scrollTop; // targets .calendarSidebarItems
     } else if (this.state.mouseOnHeader) { // Scroll source: calendarHeader
       this.calendarRows.current.scrollLeft = this.calendarHeader.current.children[0].scrollLeft; // targets .calendarHeaderContent
     } else { // Scroll source: calendarRows
@@ -84,16 +85,13 @@ class Calendar extends Component {
     }
   }
 
-  toggleMouseOnSidebar(bool) {
-    this.setState({
-      mouseOnSidebar: bool,
-    });
-  }
+  toggleMouseOnSidebar = (bool) => this.setState({ mouseOnSidebar: bool });
 
-  toggleMouseOnHeader(bool) {
-    this.setState({
-      mouseOnHeader: bool,
-    });
+  toggleMouseOnHeader = (bool) => this.setState({ mouseOnHeader: bool });
+
+  setHoveredRow = (rowName) => {
+    console.log('SETTING HOVERED ROW...');
+    this.setState({ hoveredRow: rowName });
   }
 
   render() {
@@ -112,6 +110,8 @@ class Calendar extends Component {
             roomEvents={this.props.roomEvents}
             matchScroll={this.matchScroll}
             toggleMouseOnSidebar={(bool) => this.toggleMouseOnSidebar(bool)}
+            setHoveredRow={(rowName) => this.setHoveredRow(rowName)}
+            hoveredRow={this.state.hoveredRow}
           />
           <CalendarRows
             ref={this.calendarRows}
@@ -119,6 +119,8 @@ class Calendar extends Component {
             matchScroll={this.matchScroll}
             selectEvent={(event) => this.setState({ selectedEvent: event, showEventDetails: true })}
             showCreateEvent={(eventHours, room) => this.setState({ showCreateEvent: true, eventHours, selectedRoom: room })}
+            setHoveredRow={(rowName) => this.setHoveredRow(rowName)}
+            hoveredRow={this.state.hoveredRow}
           />
           {this.state.showEventDetails &&
             <EventDetails

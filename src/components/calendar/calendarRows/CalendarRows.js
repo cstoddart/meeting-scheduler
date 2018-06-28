@@ -40,7 +40,11 @@ const CalendarRows = forwardRef((props, ref) => (
     <GridLines />
     <div>
       {props.roomEvents.map((room, index) => (
-        <div key={`calendarRow${index}`} className="calendarRow">
+        <div
+          key={`calendarRow${index}`}
+          className={`calendarRow ${props.hoveredRow === room.name ? 'active' : null}`}
+          onMouseEnter={() => props.setHoveredRow(room.name)}
+        >
           <CalendarRowSections showCreateEvent={props.showCreateEvent} room={room.name} />
           {room.events.length ?
             <Events events={room.events} selectEvent={(event) => props.selectEvent(event)} /> : null

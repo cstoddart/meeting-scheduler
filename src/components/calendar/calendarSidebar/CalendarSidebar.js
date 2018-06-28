@@ -15,12 +15,16 @@ const CalendarSidebar = forwardRef((props, ref) => (
       <div className="prevDate" title="Shift + Left" onClick={() => props.changeView(subDays(props.calendarView, 1))} />
       <div className="nextDate" title="Shift + Right" onClick={() => props.changeView(addDays(props.calendarView, 1))} />
     </div>
-    <div className="calendarRowHeaders" onScroll={props.matchScroll} onMouseEnter={() => props.toggleMouseOnSidebar(true)} onMouseLeave={() => props.toggleMouseOnSidebar(false)}>
+    <div className="calendarSidebarItems" onScroll={props.matchScroll} onMouseEnter={() => props.toggleMouseOnSidebar(true)} onMouseLeave={() => props.toggleMouseOnSidebar(false)}>
       {props.roomEvents.map((r) => {
         const room = ROOMS.find((roomItem) => roomItem.name === r.name);
         return (
-          <div key={room.name} className="calendarRowHeader">
-            <img className="calendarRowHeaderImg" src={room.imgUrl} />
+          <div
+            key={room.name}
+            className={`calendarSidebarItem ${props.hoveredRow === room.name ? 'active' : null}`}
+            onMouseEnter={() => props.setHoveredRow(room.name)}
+          >
+            <img className="calendarSidebarItemImg" src={room.imgUrl} />
             <h2>{room.name}</h2>
           </div>
         );
