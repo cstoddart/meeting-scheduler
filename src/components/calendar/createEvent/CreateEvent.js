@@ -49,7 +49,7 @@ class CreateEvent extends Component {
     });
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     console.log('EVENT', this.state);
     e.preventDefault();
     const event = this.state;
@@ -68,7 +68,8 @@ class CreateEvent extends Component {
     end = setMinutes(end, endMinutes);
     event.end = end;
 
-    addCalendarEvent(event);
+    await addCalendarEvent(event);
+    window.location.reload();
   }
 
   render() {

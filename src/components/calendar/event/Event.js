@@ -1,20 +1,35 @@
 import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
+import { toJS } from 'mobx';
 import PropTypes from 'prop-types';
 
 import { HOUR_SCALE } from '../../../constants';
 import './Event.css';
 
+@inject(({ store }) => ({
+  user: store.user,
+}))
+@observer
 class Event extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const { event, user } = props;
+    let currentUserEvent = false;
+
+    if (event.organizer.email === user.email || Object.values(toJS(event.attendees)).includes(user.email)) {
+      currentUserEvent = true;
+    }
+
     this.state = {
       width: 0,
       position: 0,
+      currentUserEvent,
     };
   }
   componentDidMount() {
     this.calculatePosition();
     this.calculateWidth();
+
   }
 
   calculatePosition() {
@@ -43,7 +58,7 @@ class Event extends Component {
     const { event } = this.props;
     return (
       <div
-        className="event"
+        className={`event ${this.state.currentUserEvent ? 'active' : ''}`}
         style={{
           minWidth: `${this.state.width}px`,
           maxWidth: `${this.state.width}px`,

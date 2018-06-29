@@ -20,6 +20,7 @@ class Store {
     const profile = GoogleUser.getBasicProfile();
     const user = {
       name: profile.getName(),
+      email: profile.getEmail(),
       firstName: profile.getGivenName(),
       lastName: profile.getFamilyName(),
       isSignedIn: GoogleUser.isSignedIn(),
