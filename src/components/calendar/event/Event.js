@@ -15,8 +15,10 @@ class Event extends Component {
     super(props);
     const { event, user } = props;
     let currentUserEvent = false;
+    const currentUserIsOrganizer = event.organizer.email === user.email;
+    const currentUserIsAttendee = Object.values(toJS(event.attendees).map((attendee) => attendee.email)).includes(user.email);
 
-    if (event.organizer.email === user.email || Object.values(toJS(event.attendees)).includes(user.email)) {
+    if (currentUserIsOrganizer || currentUserIsAttendee) {
       currentUserEvent = true;
     }
 
@@ -29,7 +31,6 @@ class Event extends Component {
   componentDidMount() {
     this.calculatePosition();
     this.calculateWidth();
-
   }
 
   calculatePosition() {
