@@ -21,3 +21,8 @@
 .gridLine.halfHour {
   border-left: 1px solid lightgrey;
 }
+
+.gridLine.halfHour.currentTime {
+  border-color: #14282d;
+  border-width: 3px;
+}
