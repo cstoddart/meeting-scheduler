@@ -55,7 +55,7 @@ class Calendar extends Component {
     this.calendarSidebar.current.style.setProperty('--scrollBarWidth', `${scrollBarWidth}px`);
 
     const currentHours = new Date().getHours();
-    this.calendarRows.current.scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
+    this.calendarRows.current.scrollLeft = ((currentHours - 0.5) * HOUR_SCALE); // - 0.5 to place calendar view 30 minutes before current time
     this.calendarHeader.current.children[0].scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
     this.calendarHeader.current.scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
   }
@@ -71,6 +71,11 @@ class Calendar extends Component {
       this.changeView(addDays(this.state.calendarView, 1));
     } else if (event.shiftKey && event.key === 'ArrowLeft') {
       this.changeView(subDays(this.state.calendarView, 1));
+    } else if (event.code === 'Space') {
+      const currentHours = new Date().getHours();
+      this.calendarRows.current.scrollLeft = ((currentHours - 0.5) * HOUR_SCALE); // - 0.5 to place calendar view 30 minutes before current time
+      this.calendarHeader.current.children[0].scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
+      this.calendarHeader.current.scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
     }
   }
 

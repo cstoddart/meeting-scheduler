@@ -57,3 +57,8 @@
   width: 3px;
   border-left: 2px solid #9ca5a7;
 }
+
+.hourMarker.currentTime:before {
+  border-color: #14282d;
+  border-width: 4px;
+}
