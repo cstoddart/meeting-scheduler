@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+.event.active {
+  z-index: 550 !important; /* increased z-index to make sure added border is fully visible */
+}
+
 .event:hover {
   background-color: rgba(185, 145, 65, 0.9);
   max-width: 100% !important;
