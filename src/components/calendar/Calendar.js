@@ -90,11 +90,11 @@ class Calendar extends Component {
     }
   }
 
+  setHoveredRow = (rowName) => this.setState({ hoveredRow: rowName });
+
   toggleMouseOnSidebar = (bool) => this.setState({ mouseOnSidebar: bool });
 
   toggleMouseOnHeader = (bool) => this.setState({ mouseOnHeader: bool });
-
-  setHoveredRow = (rowName) => this.setState({ hoveredRow: rowName });
 
   render() {
     return (
