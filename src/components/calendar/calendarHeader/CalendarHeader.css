@@ -23,6 +23,10 @@
   padding-right: var(--scrollBarWidth);
 }
 
+.calendarHeaderContent::-webkit-scrollbar {
+  display:none;
+}
+
 .hourMarkers {
   position: absolute;
   top: 0;
