@@ -7,6 +7,7 @@
 
 .event.active {
   z-index: 550 !important; /* increased z-index to make sure added border is fully visible */
+  background-color: #727f82;
 }
 
 .event:hover {
@@ -14,6 +15,10 @@
   max-width: 100% !important;
   z-index: 1000 !important;
   transition: max-width 1.5s ease-in;
+}
+
+.event.active:hover {
+  background-color: rgba(114, 127, 130, 0.9);
 }
 
 .eventContent {
@@ -36,7 +41,7 @@
 
 .event.active .eventContent:after {
   border-color: #203338;
-  border-width: 4px;
+  border-width: 3px;
 }
 
 .eventTitle {
