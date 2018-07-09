@@ -23,9 +23,9 @@
   padding-right: var(--scrollBarWidth);
 }
 
-.calendarHeaderContent::-webkit-scrollbar {
+/* .calendarHeaderContent::-webkit-scrollbar {
   display:none;
-}
+} */
 
 .hourMarkers {
   position: absolute;

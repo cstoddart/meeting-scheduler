@@ -57,9 +57,9 @@
   overflow-x: hidden;
 }
 
-.calendarSidebarItems::-webkit-scrollbar {
+/* .calendarSidebarItems::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .calendarSidebarItem {
   color: white;
