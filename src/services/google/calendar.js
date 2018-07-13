@@ -18,6 +18,7 @@ const listEvents = async (opts = {}) => {
       calendarId: id,
       timeMin: start.toISOString(),
       timeMax: end.toISOString(),
+      singleEvents: true,
     }).then(({ result }) => {
       roomEvents.push({
         name: roomName,
@@ -27,24 +28,8 @@ const listEvents = async (opts = {}) => {
   }
 
   for (const room of roomEvents) {
-    const eventIds = [];
-    room.events = room.events.filter((event) => {
-      if (event.status === 'cancelled') return false;
-
-      if (eventIds.includes(event.etag)) return false;
-      eventIds.push(event.etag);
-
-      if (!event.location || !event.location.includes(room.name)) return false;
-
-      const eventStart = new Date(event.start.dateTime).getTime();
-      const eventEnd = new Date(event.end.dateTime).getTime();
-
-      return (eventStart > new Date(start).getTime()) &&
-      (eventEnd < new Date(end).getTime());
-    }).sort((a, b) => a.start.dateTime > b.start.dateTime);
+    room.events = room.events.sort((a, b) => a.start.dateTime > b.start.dateTime);
   }
-
-  console.log('EVENTS', alphabetize(roomEvents, 'name'));
 
   return alphabetize(roomEvents, 'name');
 };

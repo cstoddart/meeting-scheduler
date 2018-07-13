@@ -10,20 +10,20 @@ const createHTML = (htmlString) => ({
   __html: htmlString,
 });
 
-const EventDetails = (props) => (
+const EventDetails = ({ event, ...props }) => (
   <div className="eventDetails">
     <Modal closeModal={() => props.hideEventDetails()}>
-      <h1 className="eventDetailsTitle">{props.event.summary}</h1>
-      <div className="eventDetailsCreator">Created by: {props.event.creator.displayName || props.event.creator.email}</div>
-      <div className="eventDetailsTime">{format(props.event.start.dateTime, 'h:mm A')} - {format(props.event.end.dateTime, 'h:mm A')}</div>
-      <div className="eventDetailsLocation">{props.event.location}</div>
-      <div className="eventDetailsDescription" dangerouslySetInnerHTML={createHTML(props.event.description)} />
+      <h1 className="eventDetailsTitle">{event.summary}</h1>
+      <div className="eventDetailsCreator">Created by: {event.creator && event.creator.displayName || event.creator && event.creator.email}</div>
+      <div className="eventDetailsTime">{format(event.start.dateTime, 'h:mm A')} - {format(event.end.dateTime, 'h:mm A')}</div>
+      <div className="eventDetailsLocation">{event.location}</div>
+      <div className="eventDetailsDescription" dangerouslySetInnerHTML={createHTML(event.description)} />
       <div className="eventDetailsAttendees">
         <strong>Attendees:</strong>
-        {props.event.attendees && props.event.attendees.filter((attendee) => (
+        {event.attendees && event.attendees.filter((attendee) => (
           !attendee.email.includes('resource.calendar.google.com')
         )).map((attendee) => (
-          <div key={`${attendee.email}${props.event.id}`} className="eventDetailsAttendee">{attendee.email}</div>
+          <div key={`${attendee.email}${event.id}`} className="eventDetailsAttendee">{attendee.email}</div>
         ))}
       </div>
     </Modal>
@@ -33,11 +33,11 @@ const EventDetails = (props) => (
 EventDetails.propTypes = {
   event: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    summary: PropTypes.string.isRequired,
+    summary: PropTypes.string,
     creator: PropTypes.shape({
       displayName: PropTypes.string,
       email: PropTypes.string.isRequired,
-    }).isRequired,
+    }),
     start: PropTypes.shape({
       dateTime: PropTypes.string.isRequired,
     }).isRequired,

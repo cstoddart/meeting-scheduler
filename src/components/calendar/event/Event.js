@@ -15,8 +15,8 @@ class Event extends Component {
     super(props);
     const { event, user } = props;
     let currentUserEvent = false;
-    const currentUserIsOrganizer = event.organizer.email === user.email;
-    const currentUserIsAttendee = Object.values(toJS(event.attendees).map((attendee) => attendee.email)).includes(user.email);
+    const currentUserIsOrganizer = event.organizer && event.organizer.email === user.email;
+    const currentUserIsAttendee = event.attendees && Object.values(toJS(event.attendees).map((attendee) => attendee.email)).includes(user.email);
 
     if (currentUserIsOrganizer || currentUserIsAttendee) {
       currentUserEvent = true;
@@ -72,7 +72,7 @@ class Event extends Component {
       >
         <div className="eventContent">
           <p className="eventTitle">{event.summary}</p>
-          <p className="eventCreator">{event.creator.displayName || event.creator.email}</p>
+          <p className="eventCreator">{event.creator && event.creator.displayName || event.creator && event.creator.email}</p>
         </div>
       </div>
     );
@@ -90,7 +90,7 @@ Event.propTypes = {
     creator: PropTypes.shape({
       displayName: PropTypes.string, // eslint-disable-line
       email: PropTypes.string.isRequired, // eslint-disable-line
-    }).isRequired,
+    }),
   }),
   selectEvent: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
