@@ -35,8 +35,8 @@ class Event extends Component {
 
   calculatePosition() {
     const start = new Date(this.props.event.start.dateTime);
-    const hours = start.getHours();
-    const minutes = start.getMinutes();
+    const hours = start.getHours() || 0;
+    const minutes = start.getMinutes() || 0;
     const position = (hours + (minutes / 60)) * HOUR_SCALE;
 
     this.setState({
@@ -45,8 +45,8 @@ class Event extends Component {
   }
 
   calculateWidth() {
-    const start = new Date(this.props.event.start.dateTime).getTime();
-    const end = new Date(this.props.event.end.dateTime).getTime();
+    const start = new Date(this.props.event.start.dateTime).getTime() || 0;
+    const end = new Date(this.props.event.end.dateTime).getTime() || 3600000 * 24;
     const duration = (end - start) / 3600000;
     const width = duration * HOUR_SCALE;
 
@@ -82,10 +82,10 @@ class Event extends Component {
 Event.propTypes = {
   event: PropTypes.shape({
     start: PropTypes.shape({
-      dateTime: PropTypes.string.isRequired,
+      dateTime: PropTypes.string,
     }).isRequired,
     end: PropTypes.shape({
-      dateTime: PropTypes.string.isRequired,
+      dateTime: PropTypes.string,
     }).isRequired,
     creator: PropTypes.shape({
       displayName: PropTypes.string, // eslint-disable-line

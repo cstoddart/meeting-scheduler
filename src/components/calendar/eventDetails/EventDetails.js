@@ -15,7 +15,10 @@ const EventDetails = ({ event, ...props }) => (
     <Modal closeModal={() => props.hideEventDetails()}>
       <h1 className="eventDetailsTitle">{event.summary}</h1>
       <div className="eventDetailsCreator">Created by: {event.creator && event.creator.displayName || event.creator && event.creator.email}</div>
-      <div className="eventDetailsTime">{format(event.start.dateTime, 'h:mm A')} - {format(event.end.dateTime, 'h:mm A')}</div>
+      {event.start.dateTime ?
+        <div className="eventDetailsTime">{format(event.start.dateTime, 'h:mm A')} - {format(event.end.dateTime, 'h:mm A')}</div>
+        : <div className="eventDetailsTime">All Day</div>
+      }
       <div className="eventDetailsLocation">{event.location}</div>
       <div className="eventDetailsDescription" dangerouslySetInnerHTML={createHTML(event.description)} />
       <div className="eventDetailsAttendees">
@@ -39,10 +42,10 @@ EventDetails.propTypes = {
       email: PropTypes.string.isRequired,
     }),
     start: PropTypes.shape({
-      dateTime: PropTypes.string.isRequired,
+      dateTime: PropTypes.string,
     }).isRequired,
     end: PropTypes.shape({
-      dateTime: PropTypes.string.isRequired,
+      dateTime: PropTypes.string,
     }).isRequired,
     location: PropTypes.string,
     description: PropTypes.string,
