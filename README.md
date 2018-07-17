@@ -1,1 +1,1 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+This project is now maintained at https://github.com/dialexa/meeting-scheduler
