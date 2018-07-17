@@ -1,6 +1,6 @@
 import { startOfDay, endOfDay, startOfToday, endOfToday } from 'date-fns';
 
-import { alphabetize } from '../../helpers';
+import { alphabetize } from '../../utils';
 import { googleInit } from './init';
 import { ROOMS } from '../../constants';
 

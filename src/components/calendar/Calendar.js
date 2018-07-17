@@ -46,7 +46,7 @@ class Calendar extends Component {
   async componentDidMount() {
     await this.props.getEvents();
     this.calendar.current.style.setProperty('--hourScale', `${HOUR_SCALE}px`);
-    document.addEventListener('keyup', (event) => this.calendarShortcuts(event));
+    document.addEventListener('keyup', this.calendarShortcuts);
     this.calendar.current.focus();
 
     const scrollBarWidth = this.calendarRows.current.offsetWidth - this.calendarRows.current.clientWidth;
@@ -60,13 +60,17 @@ class Calendar extends Component {
     this.calendarHeader.current.scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
   }
 
-  async changeView(calendarView) {
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.calendarShortcuts);
+  }
+
+  changeView = async (calendarView) => {
     this.setState({ calendarView, loading: true });
     await this.props.getEvents({ calendarView });
     this.setState({ loading: false });
   }
 
-  calendarShortcuts(event) {
+  calendarShortcuts = (event) => {
     if (event.shiftKey && event.key === 'ArrowRight') {
       this.changeView(addDays(this.state.calendarView, 1));
     } else if (event.shiftKey && event.key === 'ArrowLeft') {

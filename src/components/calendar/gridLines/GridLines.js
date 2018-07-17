@@ -13,20 +13,28 @@ class GridLines extends Component {
     };
   }
 
+  halfHourTimer = null;
+
   componentDidMount() {
+    this.setCurrentTime();
     this.setTimer();
-    window.addEventListener('focus', () => this.setTimer());
+    window.addEventListener('focus', this.setTimer);
   }
 
-  setTimer() {
+  componentWillUnmount() {
+    clearTimeout(this.halfHourTimer);
+    window.removeEventListener('focus', this.setTimer);
+  }
+
+  setTimer = () => {
     const { currentMinutes } = this.state;
     let interval = 0;
-    if (currentMinutes <= 30) {
-      interval = (30 - currentMinutes) * 1000 * 60;
+    if (currentMinutes <= 30) { // For minutes between 0 and 30 we need the distance from 30
+      interval = (30 - currentMinutes) * 1000 * 60; // converts int to minutes
     } else {
       interval = (60 - currentMinutes) * 1000 * 60;
     }
-    setTimeout(() => this.setCurrentTime(), interval);
+    this.halfHourTimer = setTimeout(() => this.setCurrentTime(), interval);
   }
 
   setCurrentTime = () => {

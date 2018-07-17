@@ -9,8 +9,22 @@ class Modal extends Component {
     this.modal = createRef();
   }
 
-  closeModal(e) {
-    if (e.target !== this.modal.current) {
+  componentDidMount() {
+    document.addEventListener('keyup', this.modalShortcuts);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.modalShortcuts);
+  }
+
+  modalShortcuts = (event) => {
+    if (event.key === 'Escape') {
+      this.props.closeModal();
+    }
+  }
+
+  closeModal = (event) => {
+    if (event.target !== this.modal.current) {
       return;
     }
     this.props.closeModal();
@@ -18,7 +32,7 @@ class Modal extends Component {
 
   render() {
     return (
-      <div className="modal" ref={this.modal} onClick={(e) => this.closeModal(e)}>
+      <div className="modal" ref={this.modal} onClick={this.closeModal}>
         <div className="modalContent">
           <div className="modalBody">
             {this.props.children}

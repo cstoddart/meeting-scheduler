@@ -12,7 +12,7 @@ const createHTML = (htmlString) => ({
 
 const EventDetails = ({ event, ...props }) => (
   <div className="eventDetails">
-    <Modal closeModal={() => props.hideEventDetails()}>
+    <Modal closeModal={props.hideEventDetails}>
       <h1 className="eventDetailsTitle">{event.summary}</h1>
       <div className="eventDetailsCreator">Created by: {event.creator && event.creator.displayName || event.creator && event.creator.email}</div>
       {event.start.dateTime ?

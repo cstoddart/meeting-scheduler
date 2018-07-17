@@ -8,3 +8,12 @@ export function toStandardTime({ hours, minutes = 0 }) {
 
   return time;
 }
+
+export const alphabetize = (array, key) => { // Use key when sorting array of objects
+  const alphabetizedArray = array.sort((a, b) => {
+    if ((key ? a[key] : a) < (key ? b[key] : b)) return -1;
+    return 1;
+  });
+
+  return alphabetizedArray;
+};

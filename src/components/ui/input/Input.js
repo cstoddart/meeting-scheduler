@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
-import { alphabetize } from '../../../helpers';
+import { alphabetize } from '../../../utils';
 import './Input.css';
 
 const Input = (props) => (
