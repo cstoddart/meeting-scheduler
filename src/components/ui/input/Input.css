@@ -48,6 +48,7 @@ div.react-select__control {
   border-radius: 3px;
   font-family: 'lato', sans-serif;
   font-size: 14px;
+  height: 33px;
 }
 
 input[type="time"] {

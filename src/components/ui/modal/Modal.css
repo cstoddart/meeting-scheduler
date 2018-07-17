@@ -12,8 +12,7 @@
   padding: 10%;
 }
 
-.modal:after {
-  content: '';
+.modalExit {
   background-image: url('../../../assets/images/x.svg');
   width: 25px;
   height: 25px;
@@ -22,7 +21,7 @@
   position: absolute;
   top: 25px;
   right: 25px;
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .modalContent {

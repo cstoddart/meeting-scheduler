@@ -24,15 +24,14 @@ class Modal extends Component {
   }
 
   closeModal = (event) => {
-    if (event.target !== this.modal.current) {
-      return;
-    }
-    this.props.closeModal();
+    if (event.target.className === 'modal' || event.target.className === 'modalExit')
+      {this.props.closeModal();}
   }
 
   render() {
     return (
       <div className="modal" ref={this.modal} onClick={this.closeModal}>
+        <div className="modalExit" onClick={this.closeModal} />
         <div className="modalContent">
           <div className="modalBody">
             {this.props.children}
