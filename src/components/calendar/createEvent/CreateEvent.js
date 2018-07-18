@@ -40,17 +40,16 @@ class CreateEvent extends Component {
     };
   }
 
-  handleChange(e, type = undefined) {
-    const name = e.target.name;
-    const value = e.target.value;
+  handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
 
     this.setState({
       [name]: value,
     });
   }
 
-  async handleSubmit(e) {
-    console.log('EVENT', this.state);
+  handleSubmit = async (e) => {
     e.preventDefault();
     const event = this.state;
 
@@ -77,19 +76,19 @@ class CreateEvent extends Component {
       <div className="createEvent" ref={this.createEvent}>
         <Modal closeModal={() => this.props.hideCreateEvent()}>
           <h1 className="createEventTitle">Create Event</h1>
-          <form onSubmit={(e) => this.handleSubmit(e)}>
-            <Input label="Title" name="title" type="text" value={this.state.title} handleChange={(e) => this.handleChange(e)} />
-            <Input label="Room" name="room" type="dropdown" value={ROOMS.map((room) => room.name)} defaultValue={this.state.room} handleChange={(e) => this.handleChange(e)} />
+          <form onSubmit={this.handleSubmit}>
+            <Input label="Title" name="title" type="text" value={this.state.title} handleChange={this.handleChange} />
+            <Input label="Room" name="room" type="dropdown" value={ROOMS.map((room) => room.name)} defaultValue={this.state.room} handleChange={this.handleChange} />
             <div className="createEventInputGroup">
-              <Input label="Start Date" name="startDate" type="date" value={this.state.startDate} handleChange={(e) => this.handleChange(e)} />
-              <Input label="Start Time" name="startTime" type="time" value={this.state.startTime} handleChange={(e) => this.handleChange(e)} />
+              <Input label="Start Date" name="startDate" type="date" value={this.state.startDate} handleChange={this.handleChange} />
+              <Input label="Start Time" name="startTime" type="time" value={this.state.startTime} handleChange={this.handleChange} />
             </div>
             <div className="createEventInputGroup">
-              <Input label="End Date" name="endDate" type="date" value={this.state.endDate} handleChange={(e) => this.handleChange(e)} />
-              <Input label="End Time" name="endTime" type="time" value={this.state.endTime} handleChange={(e) => this.handleChange(e)} />
+              <Input label="End Date" name="endDate" type="date" value={this.state.endDate} handleChange={this.handleChange} />
+              <Input label="End Time" name="endTime" type="time" value={this.state.endTime} handleChange={this.handleChange} />
             </div>
-            <Input label="Attendees" name="attendees" type="select" value={this.state.attendees} handleChange={(e, type) => this.handleChange(e, type)} options={EMAILS} />
-            <Input label="Description" name="description" type="textArea" value={this.state.description} handleChange={(e) => this.handleChange(e)} />
+            <Input label="Attendees" name="attendees" type="select" value={this.state.attendees} handleChange={this.handleChange} options={EMAILS} />
+            <Input label="Description" name="description" type="textArea" value={this.state.description} handleChange={this.handleChange} />
             <input type="submit" value="Submit" />
           </form>
         </Modal>

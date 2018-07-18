@@ -3,6 +3,7 @@ import { startOfDay, endOfDay, startOfToday, endOfToday } from 'date-fns';
 import { alphabetize } from '../../utils';
 import { googleInit } from './init';
 import { ROOMS } from '../../constants';
+import { Promise } from 'core-js';
 
 const listEvents = async (opts = {}) => {
   const { calendarView } = opts;
@@ -45,18 +46,20 @@ export const getCalendarEvents = async (opts) => {
 
 export const addCalendarEvent = (event) => {
   const room = ROOMS.find((r) => r.name === event.room).id;
-  window.gapi.client.calendar.events.insert({
-    calendarId: 'primary',
-    sendNotifications: true,
-    summary: event.title,
-    start: {
-      dateTime: event.start,
-    },
-    end: {
-      dateTime: event.end,
-    },
-    description: event.description,
-    creator: event.user,
-    attendees: [...event.attendees, room].map((email) => ({ email })),
-  }).then((result) => console.log('result', result));
+  return new Promise((resolve) => {
+    window.gapi.client.calendar.events.insert({
+      calendarId: 'primary',
+      sendNotifications: true,
+      summary: event.title,
+      start: {
+        dateTime: event.start,
+      },
+      end: {
+        dateTime: event.end,
+      },
+      description: event.description,
+      creator: event.user,
+      attendees: [...event.attendees, room].map((email) => ({ email })),
+    }).then(() => resolve());
+  });
 };
