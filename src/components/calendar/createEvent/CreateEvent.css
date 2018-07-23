@@ -1,9 +1,8 @@
 .createEventTitle {
-  width: 100%;
-  font-size: 20px;
-  border-bottom: 2px solid #dcdfe0;
-  padding-bottom: 5px;
+  font-size: 36px;
+  font-weight: normal;
   margin-bottom: 15px;
+  text-transform: capitalize;
 }
 
 .createEventInputGroup {
