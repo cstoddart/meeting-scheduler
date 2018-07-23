@@ -9,7 +9,7 @@
   height: var(--navigationHeight);
   padding: 25px;
   background-color: white;
-  box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
   z-index: 800;
 }
 
@@ -29,15 +29,13 @@
 }
 
 .navigationUserName {
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: bold;
   color: #9ca5a7;
   margin-bottom: 3px;
 }
 
 .navigationSignIn,
 .navigationSignOut {
+  font-size: 14px;
   cursor: pointer;
   font-weight: bold;
 }

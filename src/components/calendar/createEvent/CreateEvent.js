@@ -2,7 +2,7 @@ import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { parse, format, addMinutes, setMinutes, setHours } from 'date-fns';
 
-import { ROOMS, EMAILS } from '../../../constants';
+import { ROOMS } from '../../../constants';
 import Input from '../../ui/input/Input';
 import Modal from '../../ui/modal/Modal';
 import { addCalendarEvent } from '../../../services/google/calendar';
@@ -49,32 +49,32 @@ class CreateEvent extends Component {
     });
   }
 
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    const event = this.state;
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const calendarEvent = this.state;
 
     const startHours = this.state.startTime.split(':')[0];
     const startMinutes = this.state.startTime.split(':')[1];
     let start = parse(this.state.startDate);
     start = setHours(start, startHours);
     start = setMinutes(start, startMinutes);
-    event.start = start;
+    calendarEvent.start = start;
 
     const endHours = this.state.endTime.split(':')[0];
     const endMinutes = this.state.endTime.split(':')[1];
     let end = parse(this.state.endDate);
     end = setHours(end, endHours);
     end = setMinutes(end, endMinutes);
-    event.end = end;
+    calendarEvent.end = end;
 
-    await addCalendarEvent(event);
+    await addCalendarEvent(calendarEvent);
     window.location.reload();
   }
 
   render() {
     return (
       <div className="createEvent" ref={this.createEvent}>
-        <Modal closeModal={() => this.props.hideCreateEvent()}>
+        <Modal closeModal={this.props.hideCreateEvent}>
           <h1 className="createEventTitle">Create Event</h1>
           <form onSubmit={this.handleSubmit}>
             <Input label="Title" name="title" type="text" value={this.state.title} handleChange={this.handleChange} />
@@ -87,7 +87,7 @@ class CreateEvent extends Component {
               <Input label="End Date" name="endDate" type="date" value={this.state.endDate} handleChange={this.handleChange} />
               <Input label="End Time" name="endTime" type="time" value={this.state.endTime} handleChange={this.handleChange} />
             </div>
-            <Input label="Attendees" name="attendees" type="select" value={this.state.attendees} handleChange={this.handleChange} options={EMAILS} />
+            <Input label="Attendees" name="attendees" type="select" value={this.state.attendees} handleChange={this.handleChange} options={this.props.emails} />
             <Input label="Description" name="description" type="textArea" value={this.state.description} handleChange={this.handleChange} />
             <input type="submit" value="Submit" />
           </form>
@@ -102,6 +102,7 @@ CreateEvent.propTypes = {
   room: PropTypes.string,
   eventDate: PropTypes.instanceOf(Date).isRequired,
   eventHours: PropTypes.number.isRequired,
+  emails: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default CreateEvent;

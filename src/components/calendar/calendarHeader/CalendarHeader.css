@@ -14,7 +14,7 @@
 .calendarHeaderContent {
   position: absolute;
   top: 0;
-  left: 0px;
+  left: 0;
   width: 100%;
   height: calc(var(--calendarHeaderHeight) + var(--scrollBarWidth));
   max-width: calc(100% - var(--calendarSidebarWidth));

@@ -32,7 +32,7 @@ class Modal extends Component {
   render() {
     return (
       <div className="modal" ref={this.modal} onClick={this.closeModal}>
-        <div className="modalExit" onClick={this.closeModal} />
+        <div className="modalExit" onClick={this.closeModal} title="Escape" />
         <div className="modalContent">
           <div className="modalBody">
             {this.props.children}
