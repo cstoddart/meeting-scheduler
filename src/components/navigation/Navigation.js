@@ -7,7 +7,7 @@ import './Navigation.css';
 
 @inject(({ store }) => ({
   user: store.user,
-  signIng: store.signIn,
+  signIn: store.signIn,
   signOut: store.signOut,
 }))
 @observer

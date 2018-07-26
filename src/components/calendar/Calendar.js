@@ -123,7 +123,7 @@ class Calendar extends Component {
             ref={this.calendarRows}
             roomEvents={this.props.roomEvents}
             matchScroll={this.matchScroll}
-            selectEvent={(event) => this.setState({ selectedEvent: event, showEventDetails: true })}
+            showEventDetails={(event) => this.setState({ selectedEvent: event, showEventDetails: true })}
             showCreateEvent={(eventHours, room) => this.setState({ showCreateEvent: true, eventHours, selectedRoom: room })}
             setHoveredRow={(rowName) => this.setHoveredRow(rowName)}
             hoveredRow={this.state.hoveredRow}

@@ -28,6 +28,7 @@ class Event extends Component {
       currentUserEvent,
     };
   }
+
   componentDidMount() {
     this.calculatePosition();
     this.calculateWidth();
@@ -68,7 +69,7 @@ class Event extends Component {
         }}
         data-width={this.state.width}
         data-position={this.state.position}
-        onClick={() => this.props.selectEvent(event.id)}
+        onClick={() => this.props.showEventDetails(event.id)}
       >
         <div className="eventContent">
           <p className="eventTitle">{event.summary}</p>
@@ -92,7 +93,7 @@ Event.propTypes = {
       email: PropTypes.string.isRequired, // eslint-disable-line
     }),
   }),
-  selectEvent: PropTypes.func.isRequired,
+  showEventDetails: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
 };
 

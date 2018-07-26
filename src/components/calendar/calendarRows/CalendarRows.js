@@ -30,7 +30,7 @@ const Events = (props) => (
       key={event.id}
       event={event}
       index={i}
-      selectEvent={() => props.selectEvent(event)}
+      showEventDetails={() => props.showEventDetails(event)}
     />
   ))
 );
@@ -47,7 +47,7 @@ const CalendarRows = forwardRef((props, ref) => (
         >
           <CalendarRowSections showCreateEvent={props.showCreateEvent} room={room.name} />
           {room.events.length ?
-            <Events events={room.events} selectEvent={(event) => props.selectEvent(event)} /> : null
+            <Events events={room.events} showEventDetails={(event) => props.showEventDetails(event)} /> : null
           }
         </div>
       ))}
@@ -61,14 +61,14 @@ CalendarRowSections.propTypes = {
 
 Events.propTypes = {
   events: MobXTypes.observableArray.isRequired,
-  selectEvent: PropTypes.func.isRequired,
+  showEventDetails: PropTypes.func.isRequired,
 };
 
 CalendarRows.propTypes = {
   matchScroll: PropTypes.func.isRequired,
   roomEvents: PropTypes.arrayOf(PropTypes.object).isRequired,
   showCreateEvent: PropTypes.func.isRequired,
-  selectEvent: PropTypes.func.isRequired,
+  showEventDetails: PropTypes.func.isRequired,
 };
 
 export default CalendarRows;
