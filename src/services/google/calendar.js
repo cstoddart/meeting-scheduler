@@ -3,18 +3,16 @@ import { startOfDay, endOfDay, startOfToday, endOfToday } from 'date-fns';
 import { alphabetize } from '../../utils';
 import { googleInit } from './init';
 import { ROOMS } from '../../constants';
-import { Promise } from 'core-js';
 
 const listEvents = async (opts = {}) => {
   const { calendarView } = opts;
-  const roomNames = ROOMS.map((room) => room.name);
   const roomEvents = [];
 
   const start = calendarView ? startOfDay(new Date(calendarView)) : startOfToday();
   const end = calendarView ? endOfDay(new Date(calendarView)) : endOfToday();
 
-  for (const roomName of roomNames) {
-    const { id } = ROOMS.find((room) => room.name === roomName);
+  for (const room of ROOMS) {
+    const { id } = room;
     await window.gapi.client.calendar.events.list({
       calendarId: id,
       timeMin: start.toISOString(),
@@ -22,7 +20,8 @@ const listEvents = async (opts = {}) => {
       singleEvents: true,
     }).then(({ result }) => {
       roomEvents.push({
-        name: roomName,
+        name: room.name,
+        code: room.code,
         events: result.items,
       });
     });

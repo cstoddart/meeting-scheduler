@@ -2,8 +2,9 @@ import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { PropTypes as MobXTypes, observer, inject } from 'mobx-react';
 import { subDays, addDays } from 'date-fns';
+import firebase from 'firebase';
 
-import { HOUR_SCALE } from '../../constants';
+import { HOUR_SCALE, ROOMS } from '../../constants';
 import CalendarHeader from './calendarHeader/CalendarHeader';
 import CalendarSidebar from './calendarSidebar/CalendarSidebar';
 import CalendarRows from './calendarRows/CalendarRows';
@@ -58,6 +59,20 @@ class Calendar extends Component {
     this.calendarRows.current.scrollLeft = ((currentHours - 0.5) * HOUR_SCALE); // - 0.5 to place calendar view 30 minutes before current time
     this.calendarHeader.current.children[0].scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
     this.calendarHeader.current.scrollLeft = ((currentHours - 0.5) * HOUR_SCALE);
+
+    // console.log('ROOM EVENTS', this.props.roomEvents);
+    // firebase.initializeApp({
+    //   apiKey: 'AIzaSyAbAXEPVygUJXDferRqj4H0OZj-rlrFnbk',
+    //   authDomain: 'http://localhost:3000/',
+    //   projectId: 'meeting-scheduler-204518',
+    // });
+    // const firestore = firebase.firestore();
+    // firestore.settings({ timestampsInSnapshots: true });
+    // for (const room of this.props.roomEvents) {
+    //   for (const event of room.events) {
+    //     firestore.collection('rooms').doc(room.code).collection('events').doc(event.id).set(event);
+    //   }
+    // }
   }
 
   componentWillUnmount() {
