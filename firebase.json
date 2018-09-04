@@ -16,7 +16,10 @@
           }
         ]
       }
-    ]
+    ],
+    "rewrites": [ {
+      "source": "/updateEvents", "function": "updateEvents"
+    } ]
   },
   "functions": {
     "predeploy": [

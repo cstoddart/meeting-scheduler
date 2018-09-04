@@ -56,7 +56,7 @@
     // Warn against unnecessary calls to .bind()
     "no-extra-bind": 1,
 
-    // Warn against unnecessary labels    
+    // Warn against unnecessary labels
     "no-extra-label": 1,
 
     // Disallow leading or trailing decimal points in numeric literals
@@ -66,7 +66,7 @@
     "no-implicit-coercion": 1,
 
     // Warn against function declarations and expressions inside loop statements
-    "no-loop-func": 1,
+    "no-loop-func": 0,
 
     // Disallow new operators with the Function object
     "no-new-func": 2,
@@ -111,13 +111,13 @@
     "prefer-arrow-callback": 1,
 
     // Return inside each then() to create readable and reusable Promise chains.
-    // Forces developers to return console logs and http calls in promises. 
+    // Forces developers to return console logs and http calls in promises.
     "promise/always-return": 2,
 
     //Enforces the use of catch() on un-returned promises
     "promise/catch-or-return": 2,
 
     // Warn against nested then() or catch() statements
-    "promise/no-nesting": 1
+    "promise/no-nesting": 0
   }
 }

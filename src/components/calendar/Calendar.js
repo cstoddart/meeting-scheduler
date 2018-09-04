@@ -2,7 +2,6 @@ import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { PropTypes as MobXTypes, observer, inject } from 'mobx-react';
 import { subDays, addDays } from 'date-fns';
-import firebase from 'firebase';
 
 import { HOUR_SCALE, ROOMS } from '../../constants';
 import CalendarHeader from './calendarHeader/CalendarHeader';
